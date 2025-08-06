@@ -198,15 +198,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 초기 스타일 설정 - 좌우 구분
+    // 초기 스타일 설정
     timelineItems.forEach(item => {
-        if (item.classList.contains('left')) {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(30px)';
-        } else {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(-30px)';
-        }
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-30px)';
         item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
     
@@ -290,6 +285,64 @@ document.addEventListener('DOMContentLoaded', function() {
             this.querySelector('i').style.transform = 'scale(1)';
         });
     });
+    
+    /* ===================================
+       Domain Experience Chart
+       진단 분야별 경험 차트
+       =================================== */
+    const domainCanvas = document.getElementById('domainChart');
+    if (domainCanvas) {
+        const ctx = domainCanvas.getContext('2d');
+        
+        // 도넛 차트 그리기
+        const data = [
+            { label: '웹 애플리케이션', value: 45, color: '#0d6efd' },
+            { label: '모바일 앱', value: 30, color: '#ffc107' },
+            { label: '클라우드/인프라', value: 25, color: '#0dcaf0' }
+        ];
+        
+        // 차트 크기 설정
+        const centerX = domainCanvas.width / 2;
+        const centerY = domainCanvas.height / 2;
+        const radius = 80;
+        const innerRadius = 50;
+        
+        let currentAngle = -Math.PI / 2; // 12시 방향에서 시작
+        
+        // 각 섹션 그리기
+        data.forEach((segment, index) => {
+            const sliceAngle = (segment.value / 100) * 2 * Math.PI;
+            
+            // 섹션 그리기
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+            ctx.arc(centerX, centerY, innerRadius, currentAngle + sliceAngle, currentAngle, true);
+            ctx.closePath();
+            ctx.fillStyle = segment.color;
+            ctx.fill();
+            
+            // 라벨 그리기
+            const labelAngle = currentAngle + sliceAngle / 2;
+            const labelX = centerX + Math.cos(labelAngle) * (radius + 20);
+            const labelY = centerY + Math.sin(labelAngle) * (radius + 20);
+            
+            ctx.fillStyle = '#333';
+            ctx.font = '14px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(segment.label, labelX, labelY);
+            ctx.font = 'bold 16px sans-serif';
+            ctx.fillText(segment.value + '%', labelX, labelY + 18);
+            
+            currentAngle += sliceAngle;
+        });
+        
+        // 중앙 텍스트
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('진단 경험', centerX, centerY);
+    }
     
     /* ===================================
        Console Easter Egg
