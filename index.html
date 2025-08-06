@@ -37,10 +37,7 @@
                         <a class="nav-link" href="#timeline">타임라인</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#skills">기술</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#certifications">자격증</a>
+                        <a class="nav-link" href="#skills">기술&자격증</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#experience-domain">경험</a>
@@ -334,130 +331,84 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <!-- 기술 스택 섹션 -->
+    <!-- Skills and Certifications Section -->
+    <!-- 기술스택 & 자격증 섹션 (한 행에 배치) -->
     <section id="skills" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5">기술 스택</h2>
+            <h2 class="text-center mb-5">기술스택 & 자격증</h2>
             <div class="row">
-                <!-- 프로그래밍 언어 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100 text-center skill-card">
+                <!-- 기술 스택 카드 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
                         <div class="card-body">
-                            <i class="bi bi-code-slash display-4 text-primary mb-3"></i>
-                            <h5 class="card-title">프로그래밍</h5>
-                            <p class="card-text">
-                                Python<br>
-                                C/C++<br>
-                                JavaScript<br>
-                                Bash Script
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 웹 기술 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100 text-center skill-card">
-                        <div class="card-body">
-                            <i class="bi bi-globe display-4 text-success mb-3"></i>
-                            <h5 class="card-title">웹</h5>
-                            <p class="card-text">
-                                OWASP Top 10<br>
-                                Burp Suite<br>
-                                SQL Injection<br>
-                                XSS/CSRF
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 모바일/앱 -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100 text-center skill-card">
-                        <div class="card-body">
-                            <i class="bi bi-phone display-4 text-warning mb-3"></i>
-                            <h5 class="card-title">앱</h5>
-                            <p class="card-text">
-                                Android/iOS<br>
-                                Frida<br>
-                                APK 분석<br>
-                                동적 분석
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 클라우드/LLM -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100 text-center skill-card">
-                        <div class="card-body">
-                            <i class="bi bi-cloud display-4 text-info mb-3"></i>
-                            <h5 class="card-title">클라우드/LLM</h5>
-                            <p class="card-text">
-                                AWS S3<br>
-                                Docker<br>
-                                API Security<br>
-                                Prompt Injection
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <!-- 자격증 & 교육 섹션 -->
-    <section id="certifications" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">자격증 & 교육</h2>
-            <div class="row">
-                <!-- 자격증 카드 -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-patch-check display-4 text-primary mb-3"></i>
-                            <h4 class="card-title mb-3">자격증</h4>
-                            <div class="certification-badge">
-                                <h5 class="mb-1">정보처리기사</h5>
-                                <p class="text-muted mb-0">한국산업인력공단</p>
-                                <small class="text-success">2021.11 취득</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- K-Shield Jr. -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-shield-check display-4 text-success mb-3"></i>
-                            <h4 class="card-title mb-3">K-Shield Jr.</h4>
-                            <div class="education-badge">
-                                <h5 class="mb-1">정보보호 관리진단</h5>
-                                <p class="text-muted mb-0">한국인터넷진흥원</p>
-                                <small class="text-primary">2021.03 ~ 2021.06</small><br>
-                                <span class="badge bg-success mt-2">팀장 수행</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 기타 교육 -->
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-mortarboard display-4 text-info mb-3"></i>
-                            <h4 class="card-title mb-3">보안 교육</h4>
-                            <div class="education-list">
-                                <div class="mb-3">
-                                    <h6 class="mb-1">침해사고 대응 훈련</h6>
-                                    <small class="text-muted">KISA | 2020.06 | 중급</small>
+                            <h4 class="card-title mb-4">
+                                <i class="bi bi-gear-fill text-primary"></i> 기술 스택
+                            </h4>
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <h6 class="text-primary mb-2">프로그래밍</h6>
+                                    <ul class="list-unstyled small">
+                                        <li>• Python</li>
+                                        <li>• C/C++</li>
+                                        <li>• JavaScript</li>
+                                        <li>• Bash Script</li>
+                                    </ul>
                                 </div>
-                                <div>
-                                    <h6 class="mb-1">한이음 프로젝트</h6>
-                                    <small class="text-muted">정보산업연합회 | 2020</small>
+                                <div class="col-6 mb-3">
+                                    <h6 class="text-success mb-2">웹 보안</h6>
+                                    <ul class="list-unstyled small">
+                                        <li>• OWASP Top 10</li>
+                                        <li>• Burp Suite</li>
+                                        <li>• SQL Injection</li>
+                                        <li>• XSS/CSRF</li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="text-warning mb-2">모바일 앱</h6>
+                                    <ul class="list-unstyled small">
+                                        <li>• Android/iOS</li>
+                                        <li>• Frida</li>
+                                        <li>• APK 분석</li>
+                                        <li>• 동적 분석</li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="text-info mb-2">클라우드/AI</h6>
+                                    <ul class="list-unstyled small">
+                                        <li>• AWS Security</li>
+                                        <li>• Docker</li>
+                                        <li>• API Testing</li>
+                                        <li>• Prompt Injection</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 자격증 & 교육 카드 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">
+                                <i class="bi bi-award-fill text-primary"></i> 자격증 & 교육
+                            </h4>
+                            <div class="mb-4">
+                                <h6 class="text-primary mb-2">자격증</h6>
+                                <div class="certification-item p-3 bg-light rounded mb-3">
+                                    <h5 class="mb-1">정보처리기사</h5>
+                                    <p class="text-muted mb-0">한국산업인력공단 | 2021.11 취득</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h6 class="text-primary mb-2">주요 교육</h6>
+                                <div class="education-item p-3 bg-light rounded mb-2">
+                                    <h6 class="mb-1">K-Shield Jr. 정보보호 관리진단 과정</h6>
+                                    <p class="text-muted mb-0 small">한국인터넷진흥원 | 2021.03 ~ 2021.06 | <span class="badge bg-success">팀장</span></p>
+                                </div>
+                                <div class="education-item p-3 bg-light rounded">
+                                    <h6 class="mb-1">침해사고 대응 훈련 (중급)</h6>
+                                    <p class="text-muted mb-0 small">한국인터넷진흥원 | 2020.06</p>
                                 </div>
                             </div>
                         </div>
@@ -469,7 +420,7 @@
 
     <!-- Testing Experience Section -->
     <!-- 진단 분야별 경험 섹션 -->
-    <section id="experience-domain" class="py-5">
+    <section id="experience-domain" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-5">진단 분야별 경험</h2>
             <div class="row">
