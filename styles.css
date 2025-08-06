@@ -1,4 +1,20 @@
 /* ===================================
+   Timeline Styles
+   =================================== */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--timeline-color);
+    transform/* ===================================
    Custom CSS for Security Portfolio
    =================================== */
 
@@ -346,8 +362,69 @@ body {
 }
 
 /* ===================================
-   Contact Section Styles
+   Skills Section Styles (Updated)
    =================================== */
+.language-tags {
+    margin-top: 1rem;
+}
+
+.language-tags .badge {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ===================================
+   Certifications Section Styles
+   =================================== */
+.certification-item,
+.education-item {
+    padding: 15px;
+    border-left: 3px solid var(--primary-color);
+    background-color: rgba(13, 110, 253, 0.05);
+    border-radius: 0 5px 5px 0;
+}
+
+.certification-item h5,
+.education-item h5 {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+/* ===================================
+   Domain Experience Section Styles
+   =================================== */
+.domain-card {
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.domain-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.domain-card h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+.domain-card ul {
+    font-size: 0.9rem;
+}
+
+.domain-card li {
+    margin-bottom: 8px;
+}
+
+#domainChart {
+    max-width: 100%;
+    height: auto !important;
+}
 .contact-info {
     font-size: 1.1rem;
 }
