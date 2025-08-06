@@ -374,20 +374,31 @@ body {
 }
 
 /* ===================================
-   Certifications Section Styles
+   Certifications Section Styles (Updated)
    =================================== */
-.certification-item,
-.education-item {
-    padding: 15px;
-    border-left: 3px solid var(--primary-color);
-    background-color: rgba(13, 110, 253, 0.05);
-    border-radius: 0 5px 5px 0;
+.certification-badge,
+.education-badge,
+.education-list {
+    padding: 20px;
 }
 
-.certification-item h5,
-.education-item h5 {
+.certification-badge h5,
+.education-badge h5 {
     color: var(--dark-color);
     font-weight: 600;
+}
+
+.education-list h6 {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.card.shadow-sm {
+    transition: transform 0.3s ease;
+}
+
+.card.shadow-sm:hover {
+    transform: translateY(-5px);
 }
 
 /* ===================================
