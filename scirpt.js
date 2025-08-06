@@ -198,15 +198,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 초기 스타일 설정 - 좌우 구분
+    // 초기 스타일 설정
     timelineItems.forEach(item => {
-        if (item.classList.contains('left')) {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(30px)';
-        } else {
-            item.style.opacity = '0';
-            item.style.transform = 'translateX(-30px)';
-        }
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-30px)';
         item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
     
