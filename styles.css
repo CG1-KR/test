@@ -152,8 +152,8 @@ body {
    =================================== */
 .timeline {
     position: relative;
-    padding: 20px 0;
-    max-width: 1000px;
+    padding: 40px 0;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -171,15 +171,14 @@ body {
 .timeline-item {
     position: relative;
     margin-bottom: 50px;
-    display: flex;
-    align-items: flex-start;
+    width: 100%;
 }
 
-.timeline-item::before {
+.timeline-item::after {
     content: '';
     position: absolute;
     left: 50%;
-    top: 0;
+    top: 30px;
     width: 20px;
     height: 20px;
     background: var(--primary-color);
@@ -189,55 +188,97 @@ body {
     z-index: 1;
 }
 
-.timeline-date {
+/* 왼쪽 정렬 아이템 */
+.timeline-item.left .timeline-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: calc(50% + 30px);
+}
+
+.timeline-item.left .timeline-content {
+    position: relative;
+}
+
+.timeline-item.left .timeline-content::after {
+    content: '';
     position: absolute;
-    right: 52%;
-    top: -5px;
+    top: 30px;
+    right: -15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+}
+
+.timeline-item.left .timeline-date {
+    position: absolute;
+    left: calc(50% + 30px);
+    top: 30px;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+/* 오른쪽 정렬 아이템 */
+.timeline-item.right .timeline-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: calc(50% + 30px);
+}
+
+.timeline-item.right .timeline-content {
+    position: relative;
+}
+
+.timeline-item.right .timeline-content::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: -15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+}
+
+.timeline-item.right .timeline-date {
+    position: absolute;
+    right: calc(50% + 30px);
+    top: 30px;
     text-align: right;
     font-weight: 600;
     color: var(--primary-color);
     font-size: 1.1rem;
-    white-space: nowrap;
 }
 
+/* 타임라인 콘텐츠 공통 스타일 */
 .timeline-content {
-    position: absolute;
-    left: 52%;
     background: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    width: 45%;
-} right;
-    font-weight: 600;
-    color: var(--primary-color);
-    font-size: 1.1rem;
-    padding-right: 30px;
-}
-
-.timeline-content {
-    position: relative;
-    left: 55%;
-    width: 45%;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    max-width: 500px;
 }
 
 .timeline-content h5 {
     margin-bottom: 10px;
     color: var(--dark-color);
+    text-align: left;
 }
 
 .timeline-content p {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 0.95rem;
+    text-align: left;
 }
 
+/* 모든 타임라인 리스트 동일하게 설정 */
 .timeline-content ul {
     margin-bottom: 0;
     padding-left: 20px;
+    text-align: left;
     list-style-type: disc;
 }
 
@@ -342,26 +383,42 @@ body {
         font-size: 1.2rem;
     }
     
+    /* 모바일에서 타임라인 수정 */
     .timeline::before {
         left: 30px;
     }
     
-    .timeline-item::before {
+    .timeline-item::after {
         left: 30px;
     }
     
-    .timeline-date {
-        position: relative;
-        left: 0;
-        width: 100%;
-        text-align: left;
-        margin-bottom: 10px;
-        margin-left: 60px;
+    .timeline-item.left .timeline-wrapper,
+    .timeline-item.right .timeline-wrapper {
+        padding-left: 60px;
+        padding-right: 0;
     }
     
-    .timeline-content {
-        left: 60px;
-        width: calc(100% - 60px);
+    .timeline-item.left .timeline-content,
+    .timeline-item.right .timeline-content {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .timeline-item.left .timeline-date,
+    .timeline-item.right .timeline-date {
+        position: relative;
+        left: 0;
+        right: auto;
+        top: -10px;
+        margin-bottom: 10px;
+        margin-left: 60px;
+        text-align: left;
+        width: auto;
+    }
+    
+    .timeline-item.left .timeline-content::after,
+    .timeline-item.right .timeline-content::after {
+        display: none;
     }
     
     .table {
