@@ -1,297 +1,463 @@
-/* ===================================
-   Security Portfolio JavaScript
-   =================================== */
+// 보안 컨설팅 포트폴리오 JavaScript
+// 사용자 경험 향상을 위한 인터랙티브 기능들
 
-// DOM이 로드된 후 실행
+/**
+ * DOM이 완전히 로드된 후 실행되는 메인 함수
+ * 모든 이벤트 리스너와 초기화 작업을 수행
+ */
 document.addEventListener('DOMContentLoaded', function() {
+    // 각 기능별 초기화 함수 호출
+    initNavbarScroll();
+    initSmoothScrolling();
+    initProjectFilter();
+    initScrollAnimations();
+    initTypingEffect();
+    initTooltips();
+    initContactForm();
+});
+
+/**
+ * 네비게이션 바 스크롤 효과
+ * 스크롤 시 네비게이션 바의 투명도와 크기를 조정하여 현대적인 느낌 제공
+ */
+function initNavbarScroll() {
+    const navbar = document.querySelector('.custom-navbar');
+    let lastScrollTop = 0;
     
-    /* ===================================
-       Smooth Scrolling for Navigation Links
-       내비게이션 링크 클릭 시 부드러운 스크롤 효과
-       =================================== */
-    const navLinks = document.querySelectorAll('.navbar-nav a.nav-link');
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // 스크롤 방향에 따른 네비게이션 바 표시/숨김
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // 아래로 스크롤 시 네비게이션 바 숨김
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            // 위로 스크롤 시 네비게이션 바 표시
+            navbar.style.transform = 'translateY(0)';
+        }
+        
+        // 스크롤 위치에 따른 배경 투명도 조정
+        if (scrollTop > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        lastScrollTop = scrollTop;
+        
+        // 현재 섹션에 따른 네비게이션 활성화 상태 업데이트
+        updateActiveNavItem();
+    });
+}
+
+/**
+ * 부드러운 스크롤링 구현
+ * 네비게이션 링크 클릭 시 해당 섹션으로 부드럽게 이동
+ */
+function initSmoothScrolling() {
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // href가 #으로 시작하는 경우에만 처리
-            if (this.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const navbarHeight = document.querySelector('.custom-navbar').offsetHeight;
+                const targetPosition = targetSection.offsetTop - navbarHeight - 20;
                 
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                if (targetSection) {
-                    // 네비게이션 바 높이를 고려한 스크롤 위치 계산
-                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                    const targetPosition = targetSection.offsetTop - navbarHeight - 20;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+                // 부드러운 스크롤 애니메이션
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
                 
                 // 모바일에서 네비게이션 메뉴 닫기
-                const navbarToggler = document.querySelector('.navbar-toggler');
                 const navbarCollapse = document.querySelector('.navbar-collapse');
-                
                 if (navbarCollapse.classList.contains('show')) {
+                    const navbarToggler = document.querySelector('.navbar-toggler');
                     navbarToggler.click();
                 }
             }
         });
     });
-    
-    /* ===================================
-       Active Navigation Link Highlighting
-       스크롤 위치에 따른 네비게이션 링크 활성화
-       =================================== */
+}
+
+/**
+ * 현재 화면에 보이는 섹션에 따라 네비게이션 활성화 상태 업데이트
+ */
+function updateActiveNavItem() {
     const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    const scrollPosition = window.scrollY + 100;
     
-    function highlightNavigation() {
-        const scrollY = window.pageYOffset;
-        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
         
-        sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - navbarHeight - 50;
-            const sectionId = section.getAttribute('id');
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            // 모든 네비게이션 링크에서 active 클래스 제거
+            navLinks.forEach(link => link.classList.remove('active'));
             
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                // 모든 네비게이션 링크에서 active 클래스 제거
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // 현재 섹션에 해당하는 링크에 active 클래스 추가
-                const activeLink = document.querySelector(`.navbar-nav a[href="#${sectionId}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
+            // 현재 섹션에 해당하는 네비게이션 링크에 active 클래스 추가
+            const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
             }
-        });
-    }
-    
-    // 스크롤 이벤트에 highlightNavigation 함수 연결
-    window.addEventListener('scroll', highlightNavigation);
-    
-    /* ===================================
-       Project Filter Functionality
-       프로젝트 필터링 기능 구현
-       =================================== */
-    const filterButtons = document.querySelectorAll('.filter-btn');
+        }
+    });
+}
+
+/**
+ * 프로젝트 필터링 기능
+ * 프로젝트 유형별로 테이블 행을 필터링하여 사용자가 원하는 정보를 쉽게 찾도록 지원
+ */
+function initProjectFilter() {
+    const filterButtons = document.querySelectorAll('.filter-buttons .btn');
     const projectRows = document.querySelectorAll('.project-row');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // 모든 필터 버튼에서 active 클래스 제거
-            filterButtons.forEach(btn => btn.classList.remove('active'));
+            const filter = this.getAttribute('data-filter');
             
-            // 클릭된 버튼에 active 클래스 추가
+            // 활성화된 버튼 스타일 업데이트
+            filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
             
-            // 선택된 필터 가져오기
-            const filterValue = this.getAttribute('data-filter');
-            
-            // 프로젝트 행 필터링
-            projectRows.forEach(row => {
-                if (filterValue === 'all') {
-                    // 전체 보기
-                    row.style.display = '';
-                    row.classList.remove('hide');
+            // 프로젝트 행 필터링 애니메이션
+            projectRows.forEach((row, index) => {
+                const categories = row.getAttribute('data-category').split(' ');
+                
+                if (filter === 'all' || categories.includes(filter)) {
+                    // 해당 카테고리에 맞는 행 표시
+                    setTimeout(() => {
+                        row.style.display = 'table-row';
+                        row.classList.remove('hidden');
+                        row.style.animation = `slideInLeft 0.5s ease-out ${index * 0.1}s both`;
+                    }, index * 50);
                 } else {
-                    // 특정 카테고리 필터링
-                    const categories = row.getAttribute('data-categories').split(',');
-                    
-                    if (categories.includes(filterValue)) {
-                        row.style.display = '';
-                        row.classList.remove('hide');
-                    } else {
+                    // 해당 카테고리에 맞지 않는 행 숨김
+                    row.classList.add('hidden');
+                    setTimeout(() => {
                         row.style.display = 'none';
-                        row.classList.add('hide');
-                    }
+                    }, 300);
                 }
             });
-            
-            // 필터링 후 테이블 애니메이션 효과
-            animateFilteredRows();
         });
     });
+}
+
+/**
+ * 스크롤 기반 애니메이션
+ * 요소가 화면에 나타날 때 애니메이션 효과 적용
+ */
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
     
-    /* ===================================
-       Table Row Animation
-       필터링된 테이블 행 애니메이션
-       =================================== */
-    function animateFilteredRows() {
-        const visibleRows = document.querySelectorAll('.project-row:not(.hide)');
-        
-        visibleRows.forEach((row, index) => {
-            row.style.opacity = '0';
-            row.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                row.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                row.style.opacity = '1';
-                row.style.transform = 'translateY(0)';
-            }, index * 100); // 각 행마다 100ms 딜레이
+    // Intersection Observer를 사용하여 요소가 뷰포트에 들어올 때 애니메이션 실행
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                
+                // 각 요소 타입에 따른 애니메이션 적용
+                if (element.classList.contains('timeline-item')) {
+                    element.style.animation = 'slideInLeft 0.8s ease-out forwards';
+                } else if (element.classList.contains('contact-item')) {
+                    element.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                } else if (element.classList.contains('stat-item')) {
+                    element.style.animation = 'fadeInUp 0.5s ease-out forwards';
+                    // 숫자 카운트업 애니메이션 실행
+                    animateCounter(element);
+                }
+                
+                // 관찰 중지 (한 번만 실행)
+                observer.unobserve(element);
+            }
         });
+    }, observerOptions);
+    
+    // 애니메이션 대상 요소들을 관찰 시작
+    const animateElements = document.querySelectorAll('.timeline-item, .contact-item, .stat-item');
+    animateElements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+/**
+ * 숫자 카운트업 애니메이션
+ * 통계 수치가 0부터 목표값까지 증가하는 애니메이션
+ */
+function animateCounter(element) {
+    const counterElement = element.querySelector('h3');
+    if (!counterElement) return;
+    
+    const targetText = counterElement.textContent;
+    const targetNumber = parseInt(targetText.replace(/[^0-9]/g, ''));
+    const suffix = targetText.replace(/[0-9]/g, '');
+    
+    if (isNaN(targetNumber)) return;
+    
+    let currentNumber = 0;
+    const increment = targetNumber / 50; // 50단계로 나누어 애니메이션
+    const duration = 1500; // 1.5초 동안 애니메이션
+    const stepTime = duration / 50;
+    
+    const timer = setInterval(() => {
+        currentNumber += increment;
+        
+        if (currentNumber >= targetNumber) {
+            counterElement.textContent = targetText;
+            clearInterval(timer);
+        } else {
+            counterElement.textContent = Math.floor(currentNumber) + suffix;
+        }
+    }, stepTime);
+}
+
+/**
+ * 타이핑 효과
+ * 히어로 섹션의 제목에 타이핑 애니메이션 효과 적용
+ */
+function initTypingEffect() {
+    const titleElement = document.querySelector('.hero-content h1');
+    if (!titleElement) return;
+    
+    const originalText = titleElement.textContent;
+    titleElement.textContent = '';
+    
+    let index = 0;
+    const typingSpeed = 100;
+    
+    function typeCharacter() {
+        if (index < originalText.length) {
+            titleElement.textContent += originalText.charAt(index);
+            index++;
+            setTimeout(typeCharacter, typingSpeed);
+        } else {
+            // 타이핑 완료 후 커서 효과 추가
+            titleElement.innerHTML += '<span class="typing-cursor">|</span>';
+            
+            // 커서 깜빡임 효과
+            setInterval(() => {
+                const cursor = document.querySelector('.typing-cursor');
+                if (cursor) {
+                    cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+                }
+            }, 500);
+        }
     }
     
-    /* ===================================
-       Scroll to Top Button
-       페이지 상단으로 스크롤 버튼 (옵션)
-       =================================== */
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
-    scrollToTopBtn.className = 'scroll-to-top';
-    scrollToTopBtn.style.cssText = `
+    // 페이지 로드 후 1초 뒤에 타이핑 시작
+    setTimeout(typeCharacter, 1000);
+}
+
+/**
+ * 툴팁 기능 초기화
+ * Bootstrap 툴팁을 활성화하여 추가 정보 제공
+ */
+function initTooltips() {
+    // Bootstrap 5 툴팁 초기화
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    
+    // 프로젝트 테이블 행에 툴팁 추가
+    const projectRows = document.querySelectorAll('.project-row td:nth-child(5)');
+    projectRows.forEach(cell => {
+        cell.setAttribute('data-bs-toggle', 'tooltip');
+        cell.setAttribute('data-bs-placement', 'top');
+        cell.setAttribute('title', '프로젝트 상세 성과 정보');
+    });
+}
+
+/**
+ * 연락처 폼 기능 (향후 확장 가능)
+ * 연락처 버튼 클릭 시 이메일 클라이언트 열기 또는 클립보드 복사
+ */
+function initContactForm() {
+    const emailElement = document.querySelector('#contact .text-light-50');
+    
+    if (emailElement && emailElement.textContent.includes('@')) {
+        emailElement.style.cursor = 'pointer';
+        
+        emailElement.addEventListener('click', function() {
+            const email = this.textContent.trim();
+            
+            // 클립보드에 이메일 주소 복사
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(email).then(() => {
+                    showNotification('이메일 주소가 클립보드에 복사되었습니다!', 'success');
+                });
+            } else {
+                // 폴백: 이메일 클라이언트 열기
+                window.location.href = `mailto:${email}`;
+            }
+        });
+    }
+}
+
+/**
+ * 알림 메시지 표시 함수
+ * 사용자 액션에 대한 피드백 제공
+ */
+function showNotification(message, type = 'info') {
+    // 기존 알림이 있다면 제거
+    const existingNotification = document.querySelector('.custom-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // 새 알림 요소 생성
+    const notification = document.createElement('div');
+    notification.className = `custom-notification alert alert-${type === 'success' ? 'success' : 'info'}`;
+    notification.style.cssText = `
         position: fixed;
-        bottom: 20px;
+        top: 100px;
         right: 20px;
-        width: 50px;
-        height: 50px;
-        background-color: var(--primary-color);
+        z-index: 9999;
+        min-width: 300px;
+        padding: 15px;
+        border-radius: 10px;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(10px);
         color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        z-index: 1000;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
     `;
     
-    document.body.appendChild(scrollToTopBtn);
+    notification.innerHTML = `
+        <div class="d-flex align-items-center">
+            <i class="bi bi-${type === 'success' ? 'check-circle' : 'info-circle'} me-2"></i>
+            <span>${message}</span>
+        </div>
+    `;
     
-    // 스크롤 위치에 따라 버튼 표시/숨김
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            scrollToTopBtn.style.display = 'block';
-        } else {
-            scrollToTopBtn.style.display = 'none';
-        }
-    });
+    document.body.appendChild(notification);
     
-    // 버튼 클릭 시 상단으로 스크롤
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
+    // 애니메이션으로 알림 표시
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
     
-    /* ===================================
-       Timeline Animation on Scroll
-       타임라인 스크롤 애니메이션
-       =================================== */
-    const timelineItems = document.querySelectorAll('.timeline-item');
+    // 3초 후 자동 제거
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+/**
+ * 프로젝트 상세 정보 모달 (향후 확장용)
+ * 프로젝트 링크 클릭 시 상세 정보를 보여주는 모달
+ */
+function initProjectModal() {
+    const projectLinks = document.querySelectorAll('.project-row .btn-outline-primary');
     
-    function checkTimelineItems() {
-        const triggerBottom = window.innerHeight * 0.8;
-        
-        timelineItems.forEach(item => {
-            const itemTop = item.getBoundingClientRect().top;
+    projectLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            if (itemTop < triggerBottom) {
-                item.classList.add('show');
-            }
+            // 상위 행에서 프로젝트 정보 추출
+            const row = this.closest('.project-row');
+            const projectName = row.querySelector('td:nth-child(2)').textContent;
+            const client = row.querySelector('td:nth-child(3)').textContent;
+            const achievement = row.querySelector('td:nth-child(5)').textContent;
+            
+            // 임시 알림으로 상세 정보 표시 (실제로는 모달 구현)
+            showNotification(`${projectName} 프로젝트 상세 정보를 준비 중입니다.`, 'info');
         });
+    });
+}
+
+/**
+ * 성능 최적화를 위한 디바운스 함수
+ * 스크롤이나 리사이즈 이벤트의 과도한 호출을 방지
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
+ * 반응형 디자인 지원
+ * 화면 크기 변경 시 레이아웃 조정
+ */
+window.addEventListener('resize', debounce(function() {
+    // 모바일 환경에서 네비게이션 메뉴 자동 닫기
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    if (window.innerWidth > 768 && navbarCollapse.classList.contains('show')) {
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        navbarToggler.click();
+    }
+}, 250));
+
+/**
+ * 접근성 개선
+ * 키보드 네비게이션 지원 및 스크린 리더 호환성
+ */
+document.addEventListener('keydown', function(e) {
+    // ESC 키로 모달이나 드롭다운 닫기
+    if (e.key === 'Escape') {
+        const notification = document.querySelector('.custom-notification');
+        if (notification) {
+            notification.remove();
+        }
     }
     
-    // 초기 스타일 설정
-    timelineItems.forEach(item => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateX(-30px)';
-        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    
-    // show 클래스 스타일
-    const style = document.createElement('style');
-    style.textContent = `
-        .timeline-item.show {
-            opacity: 1 !important;
-            transform: translateX(0) !important;
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // 스크롤 이벤트에 연결
-    window.addEventListener('scroll', checkTimelineItems);
-    
-    // 초기 체크
-    checkTimelineItems();
-    
-    /* ===================================
-       Navbar Scroll Effect
-       스크롤 시 네비게이션 바 스타일 변경
-       =================================== */
-    const navbar = document.querySelector('.navbar');
-    
-    function handleNavbarScroll() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('navbar-scrolled');
-            navbar.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
-            navbar.style.padding = '0.5rem 0';
-        } else {
-            navbar.classList.remove('navbar-scrolled');
-            navbar.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
-            navbar.style.padding = '0.5rem 0';
-        }
+    // 탭 키 네비게이션 개선
+    if (e.key === 'Tab') {
+        document.body.classList.add('keyboard-navigation');
     }
-    
-    window.addEventListener('scroll', handleNavbarScroll);
-    
-    /* ===================================
-       Modal Enhancement
-       모달 열릴 때 애니메이션 효과
-       =================================== */
-    const modals = document.querySelectorAll('.modal');
-    
-    modals.forEach(modal => {
-        modal.addEventListener('show.bs.modal', function() {
-            this.querySelector('.modal-content').style.animation = 'modalFadeIn 0.3s ease';
-        });
-    });
-    
-    // 모달 애니메이션 스타일 추가
-    const modalStyle = document.createElement('style');
-    modalStyle.textContent = `
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8) translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-    `;
-    document.head.appendChild(modalStyle);
-    
-    /* ===================================
-       Skill Cards Hover Effect
-       기술 카드 호버 효과 강화
-       =================================== */
-    const skillCards = document.querySelectorAll('.skill-card');
-    
-    skillCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.querySelector('i').style.transform = 'scale(1.2)';
-            this.querySelector('i').style.transition = 'transform 0.3s ease';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.querySelector('i').style.transform = 'scale(1)';
-        });
-    });
-    
-    /* ===================================
-       Console Easter Egg
-       개발자 콘솔 이스터 에그
-       =================================== */
-    console.log('%c🔒 Security Portfolio', 'font-size: 24px; font-weight: bold; color: #0d6efd;');
-    console.log('%c보안은 기술이 아닌 마음가짐입니다.', 'font-size: 14px; color: #6c757d;');
-    console.log('%c궁금하신 점이 있으시면 연락 주세요!', 'font-size: 14px; color: #198754;');
-    
 });
+
+// 마우스 사용 시 키보드 네비게이션 스타일 제거
+document.addEventListener('mousedown', function() {
+    document.body.classList.remove('keyboard-navigation');
+});
+
+/**
+ * 개발자 도구 감지 (선택사항)
+ * 포트폴리오의 보안적 특성을 고려한 간단한 보안 조치
+ */
+function detectDevTools() {
+    let devtools = {
+        open: false,
+        orientation: null
+    };
+    
+    setInterval(() => {
+        if (window.outerHeight - window.innerHeight > 160 || window.outerWidth - window.innerWidth > 160) {
+            if (!devtools.open) {
+                devtools.open = true;
+                console.log('🔒 보안 컨설턴트의 포트폴리오에 오신 것을 환영합니다!');
+                console.log('💼 보안 관련 문의는 언제든 연락해주세요.');
+            }
+        } else {
+            devtools.open = false;
+        }
+    }, 500);
+}
+
+// 개발자 도구 감지 시작 (부담스럽지 않은 수준으로)
+if (typeof window !== 'undefined') {
+    detectDevTools();
+}
