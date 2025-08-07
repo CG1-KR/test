@@ -1,621 +1,518 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>최지원 - 정보보안 컨설턴트 포트폴리오</title>
+/* ===================================
+   Timeline Styles
+   =================================== */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--timeline-color);
+    transform/* ===================================
+   Custom CSS for Security Portfolio
+   =================================== */
+
+/* 루트 변수 정의 - 색상 테마 일관성 유지 */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --dark-color: #212529;
+    --light-bg: #f8f9fa;
+    --timeline-color: #e9ecef;
+}
+
+/* 전체 body 스타일 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    padding-top: 56px; /* navbar 높이만큼 패딩 */
+}
+
+/* ===================================
+   Navigation Bar Styles
+   =================================== */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.navbar-brand i {
+    margin-right: 0.5rem;
+}
+
+/* ===================================
+   Hero Section Styles
+   =================================== */
+.hero-section {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #343a40 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
+    pointer-events: none;
+}
+
+.hero-section h1 {
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-section h2 {
+    animation: fadeInUp 1s ease-out 0.2s;
+    animation-fill-mode: both;
+}
+
+.hero-section .lead {
+    animation: fadeInUp 1s ease-out 0.4s;
+    animation-fill-mode: both;
+}
+
+.hero-buttons {
+    animation: fadeInUp 1s ease-out 0.6s;
+    animation-fill-mode: both;
+}
+
+/* ===================================
+   Card Styles
+   =================================== */
+.card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.skill-card {
+    border: 1px solid #e0e0e0;
+}
+
+.skill-card:hover {
+    border-color: var(--primary-color);
+}
+
+/* ===================================
+   Table Styles
+   =================================== */
+.table-responsive {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.project-row {
+    transition: all 0.3s ease;
+}
+
+.project-row.hide {
+    display: none;
+}
+
+/* ===================================
+   Badge Styles
+   =================================== */
+.badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+    margin: 0 0.2rem;
+}
+
+.bg-purple {
+    background-color: #6f42c1 !important;
+}
+
+/* ===================================
+   Timeline Styles (Simple Version)
+   =================================== */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--timeline-color);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 4px white, 0 0 0 6px var(--timeline-color);
+}
+
+.timeline-date {
+    position: absolute;
+    left: 0;
+    top: -5px;
+    width: 45%;
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    padding-right: 30px;
+}
+
+.timeline-content {
+    position: relative;
+    left: 55%;
+    width: 45%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.timeline-content h5 {
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.timeline-content p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.timeline-content ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+.timeline-content li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+/* ===================================
+   Button Styles
+   =================================== */
+.btn {
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+}
+
+.filter-btn {
+    margin-bottom: 0.5rem;
+    min-width: 80px;
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* ===================================
+   Modal Styles
+   =================================== */
+.modal-content {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+    background-color: var(--light-bg);
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-body h6 {
+    color: var(--primary-color);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.modal-body h6:first-child {
+    margin-top: 0;
+}
+
+/* ===================================
+   Skills Section Styles (Updated)
+   =================================== */
+.language-tags {
+    margin-top: 1rem;
+}
+
+.language-tags .badge {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ===================================
+   Skills Tag Styles
+   =================================== */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.skill-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: #495057;
+    transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* ===================================
+   Certifications Section Styles (Updated)
+   =================================== */
+.certification-badge,
+.education-badge,
+.education-list {
+    padding: 20px;
+}
+
+.certification-badge h5,
+.education-badge h5 {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.education-list h6 {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.card.shadow-sm {
+    transition: transform 0.3s ease;
+}
+
+.card.shadow-sm:hover {
+    transform: translateY(-5px);
+}
+
+/* ===================================
+   Domain Experience Section Styles
+   =================================== */
+.domain-card {
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.domain-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.domain-card h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 15px 0;
+}
+
+.domain-card ul {
+    font-size: 0.9rem;
+}
+
+.domain-card li {
+    margin-bottom: 8px;
+}
+
+#domainChart {
+    max-width: 100%;
+    height: auto !important;
+}
+.contact-info {
+    font-size: 1.1rem;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+/* ===================================
+   Animations
+   =================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   Responsive Styles
+   =================================== */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
     
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    .hero-section h2 {
+        font-size: 1.2rem;
+    }
     
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    /* 모바일에서 타임라인 수정 */
+    .timeline::before {
+        left: 30px;
+    }
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <!-- 스크롤 시 상단에 고정되는 네비게이션 바 -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#home">
-                <i class="bi bi-shield-check"></i> Security Portfolio
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">소개</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">프로젝트</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#timeline">타임라인</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">기술&자격증</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experience-domain">경험</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <!-- 메인 소개 섹션 - 첫 인상을 주는 영역 -->
-    <section id="home" class="hero-section">
-        <div class="container">
-            <div class="row align-items-center min-vh-100">
-                <div class="col-lg-12 text-center">
-                    <h1 class="display-4 fw-bold mb-3">정보보안 컨설턴트</h1>
-                    <h2 class="h3 text-muted mb-4">웹/앱/클라우드 모의해킹 및 취약점 진단 전문가</h2>
-                    <p class="lead mb-4">
-                        4년차 보안 컨설턴트로서 다양한 환경에서의 보안 취약점 진단 경험 보유<br>
-                        신규 취약점 발견 및 보안 강화 솔루션 제시
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary btn-lg me-3">
-                            <i class="bi bi-folder2-open"></i> 프로젝트 보기
-                        </a>
-                        <a href="#contact" class="btn btn-outline-primary btn-lg">
-                            <i class="bi bi-envelope"></i> 연락하기
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <!-- 개인 소개 및 경력 요약 섹션 -->
-    <section id="about" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">About Me</h2>
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h4 class="card-title mb-3">
-                                <i class="bi bi-person-badge text-primary"></i> 전문 분야
-                            </h4>
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><i class="bi bi-check-circle text-success"></i> 웹 애플리케이션 모의해킹</li>
-                                <li class="mb-2"><i class="bi bi-check-circle text-success"></i> 모바일 앱 취약점 진단</li>
-                                <li class="mb-2"><i class="bi bi-check-circle text-success"></i> API 보안 검증</li>
-                                <li class="mb-2"><i class="bi bi-check-circle text-success"></i> 클라우드 인프라 보안 진단</li>
-                                <li class="mb-2"><i class="bi bi-check-circle text-success"></i> 신규 취약점 연구 및 분석</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <h4 class="card-title mb-3">
-                                <i class="bi bi-graph-up text-primary"></i> 주요 성과
-                            </h4>
-                            <ul class="list-unstyled">
-                                <li class="mb-2"><i class="bi bi-trophy text-warning"></i> 가이드 외 신규 취약점 다수 발견</li>
-                                <li class="mb-2"><i class="bi bi-trophy text-warning"></i> Critical 취약점 높은 발견율 유지</li>
-                                <li class="mb-2"><i class="bi bi-trophy text-warning"></i> PL 대무 역할 수행 경험</li>
-                                <li class="mb-2"><i class="bi bi-trophy text-warning"></i> 월별 업무평가 평균 점수 향상 기여</li>
-                                <li class="mb-2"><i class="bi bi-trophy text-warning"></i> 개발팀과의 원활한 협업 능력</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <!-- 주요 프로젝트 목록 테이블 -->
-    <section id="projects" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">주요 프로젝트</h2>
-            
-            <!-- 프로젝트 필터 버튼 -->
-            <div class="text-center mb-4">
-                <button class="btn btn-outline-primary btn-sm me-2 filter-btn active" data-filter="all">전체</button>
-                <button class="btn btn-outline-primary btn-sm me-2 filter-btn" data-filter="web">🟦 웹</button>
-                <button class="btn btn-outline-primary btn-sm me-2 filter-btn" data-filter="mobile">🟨 모바일</button>
-                <button class="btn btn-outline-primary btn-sm me-2 filter-btn" data-filter="infra">🟩 인프라</button>
-                <button class="btn btn-outline-primary btn-sm filter-btn" data-filter="api">🟪 API</button>
-            </div>
-
-            <!-- 반응형 프로젝트 테이블 -->
-            <div class="table-responsive">
-                <table class="table table-hover align-middle">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">프로젝트명</th>
-                            <th scope="col">기간</th>
-                            <th scope="col">유형</th>
-                            <th scope="col">주요 역할</th>
-                            <th scope="col">상세</th>
-                        </tr>
-                    </thead>
-                    <tbody id="projectTableBody">
-                        <!-- 대형 통신사 프로젝트 -->
-                        <tr class="project-row" data-categories="web,mobile,api">
-                            <td class="fw-bold">K사 그룹 ITO 통합보안검증</td>
-                            <td>2023.04 ~ 진행중</td>
-                            <td>
-                                <span class="badge bg-primary">🟦 웹</span>
-                                <span class="badge bg-warning text-dark">🟨 모바일</span>
-                                <span class="badge bg-purple">🟪 API</span>
-                            </td>
-                            <td>PL 대무, 모의해킹 수행</td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project1Modal">
-                                    <i class="bi bi-eye"></i> 상세보기
-                                </button>
-                            </td>
-                        </tr>
-                        
-                        <!-- 문화재청 프로젝트 -->
-                        <tr class="project-row" data-categories="web">
-                            <td class="fw-bold">정부부처 웹 취약점 진단</td>
-                            <td>2023.02 ~ 2023.03</td>
-                            <td>
-                                <span class="badge bg-primary">🟦 웹</span>
-                            </td>
-                            <td>취약점 진단 및 보고서 작성</td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project2Modal">
-                                    <i class="bi bi-eye"></i> 상세보기
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- 국내 카드사 프로젝트 -->
-                        <tr class="project-row" data-categories="web,mobile,infra">
-                            <td class="fw-bold">국내 카드사 마이데이터 보안 진단</td>
-                            <td>2022.10 ~ 2022.11</td>
-                            <td>
-                                <span class="badge bg-primary">🟦 웹</span>
-                                <span class="badge bg-warning text-dark">🟨 모바일</span>
-                                <span class="badge bg-success">🟩 인프라</span>
-                            </td>
-                            <td>통합 보안 진단, 스크립트 개발</td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project3Modal">
-                                    <i class="bi bi-eye"></i> 상세보기
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- 경기도청 프로젝트 -->
-                        <tr class="project-row" data-categories="web">
-                            <td class="fw-bold">지방자치단체 정보보안관리실태평가</td>
-                            <td>2022.08 ~ 2022.09</td>
-                            <td>
-                                <span class="badge bg-primary">🟦 웹</span>
-                            </td>
-                            <td>PL 역할, 취약점 진단</td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project4Modal">
-                                    <i class="bi bi-eye"></i> 상세보기
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- 식품의약품안전처 프로젝트 -->
-                        <tr class="project-row" data-categories="web">
-                            <td class="fw-bold">정부기관 웹 모의해킹</td>
-                            <td>2022.07</td>
-                            <td>
-                                <span class="badge bg-primary">🟦 웹</span>
-                            </td>
-                            <td>모의해킹 수행</td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#project5Modal">
-                                    <i class="bi bi-eye"></i> 상세보기
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <!-- 경력 타임라인 섹션 -->
-    <section id="timeline" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">경력 타임라인</h2>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="timeline">
-                        <!-- 2023년 - 왼쪽 -->
-                        <div class="timeline-item left">
-                            <div class="timeline-wrapper">
-                                <div class="timeline-content">
-                                    <h5>대규모 통합보안검증 프로젝트</h5>
-                                    <p>K사 그룹의 ITO 통합보안검증 및 모의해킹 진행</p>
-                                    <ul>
-                                        <li>신규 취약점 발견 (Unity Command Injection, AWS S3 접근 취약점, AI Prompt Injection 등)</li>
-                                        <li>월별 업무평가 평균 점수 향상 기여</li>
-                                        <li>PL 대무 역할 수행</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-date">2023 - 현재</div>
-                        </div>
-
-                        <!-- 2022년 - 오른쪽 -->
-                        <div class="timeline-item right">
-                            <div class="timeline-wrapper">
-                                <div class="timeline-content">
-                                    <h5>윈스 정보보안 컨설팅팀 입사</h5>
-                                    <p>주임급 보안 컨설턴트로 다양한 공공기관 프로젝트 수행</p>
-                                    <ul>
-                                        <li>주요 공공기관 및 정부부처 보안 진단</li>
-                                        <li>웹/모바일/인프라 통합 진단 역량 확보</li>
-                                        <li>진단 스크립트 개발 및 프로세스 개선</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-date">2022</div>
-                        </div>
-
-                        <!-- 2021년 - 왼쪽 -->
-                        <div class="timeline-item left">
-                            <div class="timeline-wrapper">
-                                <div class="timeline-content">
-                                    <h5>K-Shield Jr. 과정 수료</h5>
-                                    <p>한국인터넷진흥원 정보보호 관리진단 과정 팀장 역할 수행</p>
-                                    <ul>
-                                        <li>DGA 악성 도메인 탐지 프로그램 개발</li>
-                                        <li>N-gram 알고리즘 활용한 보안 솔루션 구현</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-date">2021</div>
-                        </div>
-
-                        <!-- 2020년 - 오른쪽 -->
-                        <div class="timeline-item right">
-                            <div class="timeline-wrapper">
-                                <div class="timeline-content">
-                                    <h5>한이음 프로젝트 수행</h5>
-                                    <p>디바이스 드라이버를 활용한 랩톱 보안 소프트웨어 개발</p>
-                                    <ul>
-                                        <li>팀장 역할 수행</li>
-                                        <li>추계학술대회 논문 게재</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-date">2020</div>
-                        </div>
-
-                        <!-- 2018-2019년 - 왼쪽 -->
-                        <div class="timeline-item left">
-                            <div class="timeline-wrapper">
-                                <div class="timeline-content">
-                                    <h5>군 복무</h5>
-                                    <p>육군 정보보호병으로 복무</p>
-                                    <ul>
-                                        <li>군 내 정보보호 업무 수행</li>
-                                        <li>보안 시스템 운영 경험</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-date">2018 - 2019</div>
-                        </div>
-
-                        <!-- 2016-2022년 - 오른쪽 -->
-                        <div class="timeline-item right">
-                            <div class="timeline-wrapper">
-                                <div class="timeline-content">
-                                    <h5>수원대학교 졸업</h5>
-                                    <p>정보보호학과 학사 학위 취득</p>
-                                    <ul>
-                                        <li>졸업논문: Ngram을 사용한 악성 DGA-DNS 판별 프로그램</li>
-                                        <li>정보처리기사 자격증 취득</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="timeline-date">2016 - 2022</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills and Certifications Section -->
-    <!-- 기술스택 & 자격증 섹션 (한 행에 배치) -->
-    <section id="skills" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">기술스택 & 자격증</h2>
-            <div class="row">
-                <!-- 기술 스택 카드 -->
-                <div class="col-lg-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h4 class="card-title mb-4">
-                                <i class="bi bi-gear-fill text-primary"></i> 기술 스택
-                            </h4>
-                            <div class="row">
-                                <div class="col-6 mb-3">
-                                    <h6 class="text-primary mb-2">프로그래밍</h6>
-                                    <ul class="list-unstyled small">
-                                        <li>• Python</li>
-                                        <li>• C/C++</li>
-                                        <li>• JavaScript</li>
-                                        <li>• Bash Script</li>
-                                    </ul>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <h6 class="text-success mb-2">웹 보안</h6>
-                                    <ul class="list-unstyled small">
-                                        <li>• OWASP Top 10</li>
-                                        <li>• Burp Suite</li>
-                                        <li>• SQL Injection</li>
-                                        <li>• XSS/CSRF</li>
-                                    </ul>
-                                </div>
-                                <div class="col-6">
-                                    <h6 class="text-warning mb-2">모바일 앱</h6>
-                                    <ul class="list-unstyled small">
-                                        <li>• Android/iOS</li>
-                                        <li>• Frida</li>
-                                        <li>• APK 분석</li>
-                                        <li>• 동적 분석</li>
-                                    </ul>
-                                </div>
-                                <div class="col-6">
-                                    <h6 class="text-info mb-2">클라우드/AI</h6>
-                                    <ul class="list-unstyled small">
-                                        <li>• AWS Security</li>
-                                        <li>• Docker</li>
-                                        <li>• API Testing</li>
-                                        <li>• Prompt Injection</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 자격증 & 교육 카드 -->
-                <div class="col-lg-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h4 class="card-title mb-4">
-                                <i class="bi bi-award-fill text-primary"></i> 자격증 & 교육
-                            </h4>
-                            <div class="mb-4">
-                                <h6 class="text-primary mb-2">자격증</h6>
-                                <div class="certification-item p-3 bg-light rounded mb-3">
-                                    <h5 class="mb-1">정보처리기사</h5>
-                                    <p class="text-muted mb-0">한국산업인력공단 | 2021.11 취득</p>
-                                </div>
-                            </div>
-                            <div>
-                                <h6 class="text-primary mb-2">주요 교육</h6>
-                                <div class="education-item p-3 bg-light rounded mb-2">
-                                    <h6 class="mb-1">K-Shield Jr. 정보보호 관리진단 과정</h6>
-                                    <p class="text-muted mb-0 small">한국인터넷진흥원 | 2021.03 ~ 2021.06 | <span class="badge bg-success">팀장</span></p>
-                                </div>
-                                <div class="education-item p-3 bg-light rounded">
-                                    <h6 class="mb-1">침해사고 대응 훈련 (중급)</h6>
-                                    <p class="text-muted mb-0 small">한국인터넷진흥원 | 2020.06</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testing Experience Section -->
-    <!-- 진단 분야별 경험 섹션 -->
-    <section id="experience-domain" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">진단 분야별 경험</h2>
-            <div class="row">
-                <div class="col-lg-12">
-                    <canvas id="domainChart" width="400" height="200"></canvas>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <!-- 웹 진단 -->
-                <div class="col-lg-4 mb-4">
-                    <div class="domain-card text-center">
-                        <i class="bi bi-globe display-4 text-primary mb-3"></i>
-                        <h4>웹 애플리케이션</h4>
-                        <h2 class="text-primary">45%</h2>
-                        <ul class="list-unstyled text-start mt-3">
-                            <li><i class="bi bi-check-circle text-success"></i> OWASP Top 10 취약점 진단</li>
-                            <li><i class="bi bi-check-circle text-success"></i> SQL Injection, XSS 등</li>
-                            <li><i class="bi bi-check-circle text-success"></i> 인증/세션 관리 취약점</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- 모바일 진단 -->
-                <div class="col-lg-4 mb-4">
-                    <div class="domain-card text-center">
-                        <i class="bi bi-phone display-4 text-warning mb-3"></i>
-                        <h4>모바일 애플리케이션</h4>
-                        <h2 class="text-warning">30%</h2>
-                        <ul class="list-unstyled text-start mt-3">
-                            <li><i class="bi bi-check-circle text-success"></i> Android/iOS 앱 진단</li>
-                            <li><i class="bi bi-check-circle text-success"></i> Frida를 통한 동적 분석</li>
-                            <li><i class="bi bi-check-circle text-success"></i> 난독화 우회 및 취약점 분석</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- 클라우드/인프라 진단 -->
-                <div class="col-lg-4 mb-4">
-                    <div class="domain-card text-center">
-                        <i class="bi bi-cloud display-4 text-info mb-3"></i>
-                        <h4>클라우드 & 인프라</h4>
-                        <h2 class="text-info">25%</h2>
-                        <ul class="list-unstyled text-start mt-3">
-                            <li><i class="bi bi-check-circle text-success"></i> AWS 보안 진단</li>
-                            <li><i class="bi bi-check-circle text-success"></i> 서버 취약점 점검</li>
-                            <li><i class="bi bi-check-circle text-success"></i> 네트워크 보안 진단</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <!-- 연락처 섹션 -->
-    <section id="contact" class="py-5 bg-dark text-white">
-        <div class="container text-center">
-            <h2 class="mb-4">Contact</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <p class="mb-4">보안 컨설팅 및 프로젝트 문의는 아래 연락처로 부탁드립니다.</p>
-                    <div class="contact-info">
-                        <p><i class="bi bi-envelope"></i> jwc*******@naver.com</p>
-                        <p><i class="bi bi-phone"></i> 010-****-8782</p>
-                        <p><i class="bi bi-geo-alt"></i> 서울특별시</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-3 bg-dark text-white-50 text-center">
-        <div class="container">
-            <p class="mb-0">&copy; 2024 Security Portfolio. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Project Modals -->
-    <!-- 프로젝트 상세 정보 모달들 -->
+    .timeline-item::after {
+        left: 30px;
+    }
     
-    <!-- Modal 1: 대형 통신사 프로젝트 -->
-    <div class="modal fade" id="project1Modal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">K사 그룹 ITO 통합보안검증</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <h6>프로젝트 개요</h6>
-                    <p>K사 그룹 전체 IT 인프라에 대한 통합 보안 검증 및 모의해킹 프로젝트</p>
-                    
-                    <h6>주요 업무</h6>
-                    <ul>
-                        <li>웹/모바일 애플리케이션 취약점 진단 및 모의해킹</li>
-                        <li>내부 기준 진단 및 CVE 취약점 확인</li>
-                        <li>담당자 문의 응대 및 협업을 통한 취약점 조치</li>
-                        <li>PL 부재 시 PL 대무 역할 수행</li>
-                    </ul>
-                    
-                    <h6>주요 성과</h6>
-                    <ul>
-                        <li>타 검증원과의 크로스체크를 통한 월별 업무평가 점수 향상</li>
-                        <li>기존 검증 기준에 없던 신규 취약점 발견:
-                            <ul>
-                                <li>Unity 파일 내 Command Injection</li>
-                                <li>AWS CLI를 통한 S3 버킷 서버 접근 취약점</li>
-                                <li>AI Prompt Injection</li>
-                                <li>Geoserver SQL Injection</li>
-                            </ul>
-                        </li>
-                        <li>Critical 취약점 높은 발견율 유지</li>
-                    </ul>
-                    
-                    <h6>사용 기술</h6>
-                    <p>
-                        <span class="badge bg-secondary">Burp Suite</span>
-                        <span class="badge bg-secondary">Python</span>
-                        <span class="badge bg-secondary">AWS CLI</span>
-                        <span class="badge bg-secondary">Frida</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2: 정부부처 프로젝트 -->
-    <div class="modal fade" id="project2Modal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">정부부처 웹 취약점 진단</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <h6>프로젝트 개요</h6>
-                    <p>정부부처 웹사이트 및 관련 시스템의 보안 취약점 진단</p>
-                    
-                    <h6>주요 업무</h6>
-                    <ul>
-                        <li>주요정보통신기반시설 기술적 취약점 분석·평가 방법 상세가이드 기반 진단</li>
-                        <li>웹 애플리케이션 취약점 진단</li>
-                        <li>결과 보고서 작성 및 제출</li>
-                    </ul>
-                    
-                    <h6>진단 항목</h6>
-                    <ul>
-                        <li>인증 및 세션 관리 취약점</li>
-                        <li>입력값 검증 취약점 (SQL Injection, XSS 등)</li>
-                        <li>파일 업로드/다운로드 취약점</li>
-                        <li>접근통제 취약점</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 3: 국내 카드사 프로젝트 -->
-    <div class="modal fade" id="project3Modal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">국내 카드사 마이데이터 보안 진단</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <h6>프로젝트 개요</h6>
-                    <p>금융 마이데이터 서비스 출시 전 전체 인프라 및 애플리케이션 보안 진단</p>
-                    
-                    <h6>주요 업무</h6>
-                    <ul>
-                        <li>웹/모바일/인프라 통합 진단</li>
-                        <li>인프라 진단 스크립트 사내 환경에 맞게 수정</li>
-                        <li>진단 결과 보고서 작성</li>
-                    </ul>
-                    
-                    <h6>주요 성과</h6>
-                    <ul>
-                        <li>인프라 진단 스크립트 커스터마이징 및 자동화</li>
-                        <li>엑셀 함수를 활용한 진단 결과 비교 프로그램 개발</li>
-                        <li>결과 보고 회의 참여 및 발표</li>
-                    </ul>
-                    
-                    <h6>진단 기준</h6>
-                    <p>전자금융기반시설 취약점 가이드 준수</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    .timeline-item.left .timeline-wrapper,
+    .timeline-item.right .timeline-wrapper {
+        padding-left: 60px;
+        padding-right: 0;
+    }
     
-    <!-- Custom JavaScript -->
-    <script src="script.js"></script>
-</body>
-</html>
+    .timeline-item.left .timeline-content,
+    .timeline-item.right .timeline-content {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .timeline-item.left .timeline-date,
+    .timeline-item.right .timeline-date {
+        position: relative;
+        left: 0;
+        right: auto;
+        top: -10px;
+        margin-bottom: 10px;
+        margin-left: 60px;
+        text-align: left;
+        width: auto;
+    }
+    
+    .timeline-item.left .timeline-content::after,
+    .timeline-item.right .timeline-content::after {
+        display: none;
+    }
+    
+    .table {
+        font-size: 0.875rem;
+    }
+    
+    .badge {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-buttons .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .hero-buttons .btn:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* ===================================
+   Utility Classes
+   =================================== */
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Section padding adjustment for fixed navbar */
+section {
+    scroll-margin-top: 80px;
+}
