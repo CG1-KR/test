@@ -1,9 +1,9 @@
 /* 밝고 친근한 색상의 새로운 디자인 */
 :root {
-    /* 메인 컬러: 부드러운 민트/터코이즈 계열 */
-    --primary-color: #20b2aa;
-    --primary-light: #48d1cc;
-    --primary-dark: #008b8b;
+    /* 메인 컬러: 부드러운 하늘색/파란색 계열 */
+    --primary-color: #4a90e2;
+    --primary-light: #6bb6ff;
+    --primary-dark: #357abd;
     
     /* 보조 컬러: 따뜻한 코랄/오렌지 계열 */
     --accent-color: #ff8c69;
@@ -16,8 +16,8 @@
     
     /* 배경 컬러 */
     --bg-white: #ffffff;
-    --bg-light: #f8fffe;
-    --bg-soft: #f0fffe;
+    --bg-light: #f8fbff;
+    --bg-soft: #f0f8ff;
     
     /* 텍스트 컬러 */
     --text-dark: #2c3e50;
@@ -25,13 +25,13 @@
     --text-light: #85929e;
     
     /* 경계선 */
-    --border-color: #e8f6f3;
-    --border-light: #f0fffe;
+    --border-color: #e3f2fd;
+    --border-light: #f0f8ff;
     
     /* 그림자 */
-    --shadow-light: 0 2px 10px rgba(32, 178, 170, 0.1);
-    --shadow-medium: 0 4px 20px rgba(32, 178, 170, 0.15);
-    --shadow-strong: 0 8px 30px rgba(32, 178, 170, 0.2);
+    --shadow-light: 0 2px 10px rgba(74, 144, 226, 0.1);
+    --shadow-medium: 0 4px 20px rgba(74, 144, 226, 0.15);
+    --shadow-strong: 0 8px 30px rgba(74, 144, 226, 0.2);
 }
 
 /* 기본 설정 */
