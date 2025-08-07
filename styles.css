@@ -1,68 +1,49 @@
-/* ===== 나만의 포트폴리오 스타일 ===== */
-
-/* 프로필 이미지 강조 */
-.profile-img {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  box-shadow: 0 2px 10px rgba(51,51,51,0.08);
-  border: 4px solid #dee2e6;
+/* 전체 레이아웃 및 색상 정의 */
+body {
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* 태그 배지 색상 및 구분 */
-.tag-web {
-  background-color: #007bff;
-  color: #fff;
-}
-.tag-app {
-  background-color: #ffc107;
-  color: #212529;
-}
-.tag-infra {
-  background-color: #28a745;
-  color: #fff;
-}
-.badge {
-  font-size: 0.95em;
-  margin-right: 3px;
+/* 타임라인 스타일 */
+.timeline {
+  list-style: none;
+  padding: 0;
+  position: relative;
+  border-left: 3px solid #0d6efd;
+  margin-left: 20px;
 }
 
-/* 타임라인 카드 */
-.timeline-wrapper {
-  scrollbar-width: thin;
-  scrollbar-color: #ccc #f8f9fa;
-}
-.timeline-wrapper::-webkit-scrollbar {
-  height: 8px;
-  background: #f8f9fa;
-}
-.timeline-wrapper::-webkit-scrollbar-thumb {
-  background: #adb5bd;
-  border-radius: 4px;
-}
-.timeline-card {
-  min-width: 250px;
-  max-width: 260px;
-  flex-shrink: 0;
-  box-shadow: 0 1px 4px rgba(80,80,80,0.09);
-  transition: transform 0.2s;
-}
-.timeline-card:hover {
-  transform: translateY(-6px) scale(1.04);
+.timeline li {
+  margin: 20px 0;
+  position: relative;
+  padding-left: 20px;
 }
 
-/* 반응형 조정 */
-@media (max-width: 575px) {
-  .profile-img { width: 80px; height: 80px; }
-  .timeline-card { min-width: 170px; max-width: 185px; font-size: 0.9em; }
-  h2 { font-size: 1.3em; }
+.timeline-date {
+  font-weight: bold;
+  color: #0d6efd;
+  display: block;
+  margin-bottom: 5px;
 }
 
-@media (max-width: 991px) {
-  #intro .col-md-2 { text-align: center; }
+.timeline-content {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 4px solid #0d6efd;
 }
 
-/* project table 작은 화면에서 폰트/간격 조정 */
-@media (max-width: 767px) {
-  table th, table td { font-size: 0.93em; padding: 0.55rem; }
+@media (max-width: 576px) {
+  .timeline-content {
+    font-size: 0.9rem;
+  }
+}
+
+/* 테이블 반응형 개선 */
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* 푸터 스타일 */
+footer {
+  font-size: 0.9rem;
 }
