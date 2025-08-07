@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 네비게이션 바 - 고정형 투명 배경으로 프리미엄 느낌 제공 -->
+    <!-- 네비게이션 바 -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
@@ -43,7 +43,7 @@
         </div>
     </nav>
 
-    <!-- 히어로 섹션 - 첫인상이 중요한 보안 전문가의 전문성을 강조 -->
+    <!-- 히어로 섹션 -->
     <section id="home" class="hero-section">
         <div class="container">
             <div class="row align-items-center min-vh-100">
@@ -90,7 +90,6 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image">
-                        <!-- 보안 관련 SVG 일러스트레이션 -->
                         <div class="security-visual">
                             <i class="bi bi-shield-check display-1 text-primary"></i>
                         </div>
@@ -100,7 +99,7 @@
         </div>
     </section>
 
-    <!-- 프로젝트 섹션 - 실무 경험을 구체적으로 보여주는 핵심 섹션 -->
+    <!-- 프로젝트 섹션 -->
     <section id="projects" class="py-5 bg-dark-subtle">
         <div class="container">
             <div class="row">
@@ -110,7 +109,7 @@
                 </div>
             </div>
 
-            <!-- 프로젝트 필터 버튼 - 사용자 경험 개선을 위한 인터랙션 -->
+            <!-- 프로젝트 필터 버튼 -->
             <div class="row mb-4">
                 <div class="col-12 text-center">
                     <div class="btn-group filter-buttons" role="group">
@@ -123,7 +122,7 @@
                 </div>
             </div>
 
-            <!-- 프로젝트 테이블 - 반응형 디자인으로 모바일에서도 최적화 -->
+            <!-- 프로젝트 테이블 -->
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive">
@@ -139,11 +138,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- 2023년 말 ~ 현재 진행 중인 프로젝트 -->
+                                <!-- 현재 진행 중인 프로젝트 -->
                                 <tr class="project-row" data-category="web app infra">
                                     <td class="fw-semibold text-primary">2023.12-현재</td>
-                                    <td class="fw-semibold">KT그룹 통합보안검증 및 모의해킹</td>
-                                    <td class="text-light-50">KTDS (KT그룹 계열사)</td>
+                                    <td class="fw-semibold">대형 통신사 그룹 통합보안검증</td>
+                                    <td class="text-light-50">국내 1위 통신사 그룹</td>
                                     <td>
                                         <span class="badge bg-primary me-1">🟦 웹</span>
                                         <span class="badge bg-success me-1">🟨 앱</span>
@@ -151,7 +150,7 @@
                                     </td>
                                     <td class="text-success">
                                         <i class="bi bi-check-circle me-1"></i>
-                                        대형 통신사 보안검증 전담, 지속 진행
+                                        전담 컨설턴트로 지속 수행 중
                                     </td>
                                     <td>
                                         <a href="#" class="btn btn-sm btn-outline-primary">
@@ -163,8 +162,8 @@
                                 <!-- 2023년 프로젝트들 -->
                                 <tr class="project-row" data-category="web app infra">
                                     <td class="fw-semibold text-primary">2023</td>
-                                    <td class="fw-semibold">KTDS ITO 통합보안검증 및 모의해킹</td>
-                                    <td class="text-light-50">KTDS (KT그룹 계열사)</td>
+                                    <td class="fw-semibold">통신사 ITO 통합보안검증 및 모의해킹</td>
+                                    <td class="text-light-50">대형 통신사 계열 IT서비스</td>
                                     <td>
                                         <span class="badge bg-primary me-1">🟦 웹</span>
                                         <span class="badge bg-success me-1">🟨 앱</span>
@@ -218,8 +217,8 @@
                                 <!-- 2022년 프로젝트들 -->
                                 <tr class="project-row" data-category="web app infra">
                                     <td class="fw-semibold text-primary">2022</td>
-                                    <td class="fw-semibold">BC카드 마이데이터 인프라 취약점 진단</td>
-                                    <td class="text-light-50">BC카드</td>
+                                    <td class="fw-semibold">대형 카드사 마이데이터 인프라 취약점 진단</td>
+                                    <td class="text-light-50">국내 주요 카드사</td>
                                     <td>
                                         <span class="badge bg-primary me-1">🟦 웹</span>
                                         <span class="badge bg-success me-1">🟨 앱</span>
@@ -345,7 +344,7 @@
         </div>
     </section>
 
-    <!-- 타임라인 섹션 - 경력 발전 과정을 시각적으로 보여주는 섹션 -->
+    <!-- 타임라인 섹션 -->
     <section id="timeline" class="py-5">
         <div class="container">
             <div class="row">
@@ -356,96 +355,126 @@
             </div>
             
             <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <!-- 타임라인 컨테이너 -->
-                    <div class="timeline">
-                        <!-- 2023년 말 ~ 현재: KT그룹 전담 -->
+                <div class="col-lg-10 mx-auto">
+                    <div class="timeline-container">
+                        <!-- 현재: 대형 통신사 그룹 전담 -->
                         <div class="timeline-item">
-                            <div class="timeline-marker bg-primary"></div>
+                            <div class="timeline-date">
+                                <span class="badge bg-primary px-3 py-2">2023.12 - 현재</span>
+                            </div>
                             <div class="timeline-content">
-                                <div class="timeline-header">
-                                    <h4 class="timeline-title text-primary">KT그룹 전담 보안컨설턴트</h4>
-                                    <span class="timeline-date badge bg-primary">2023.12 - 현재</span>
+                                <h4 class="timeline-title text-primary mb-3">
+                                    <i class="bi bi-building me-2"></i>
+                                    대형 통신사 그룹 전담 보안컨설턴트
+                                </h4>
+                                <div class="timeline-description">
+                                    <p class="text-light-50 mb-3">
+                                        국내 1위 통신사 그룹의 통합보안검증 및 모의해킹 전담 수행
+                                    </p>
+                                    <ul class="timeline-highlights">
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>대형 통신사 그룹의 통합 보안검증 수행</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>웹/모바일/인프라 전 영역 보안성검토</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>지속적 보안관제 및 취약점 관리</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>통신사 계열사 보안 수준 향상 기여</li>
+                                    </ul>
                                 </div>
-                                <p class="timeline-text text-light-50">
-                                    KTDS를 통한 KT그룹 통합보안검증 및 모의해킹 전담<br>
-                                    • 대형 통신사 그룹의 통합 보안검증 수행<br>
-                                    • 웹/모바일/인프라 전 영역 보안성검토<br>
-                                    • 지속적 보안관제 및 취약점 관리<br>
-                                    • KT그룹 계열사 보안 수준 향상 기여
-                                </p>
                             </div>
                         </div>
 
-                        <!-- 2022-2023년: 윈스 정보보안 컨설팅팀 -->
+                        <!-- 윈스 정보보안 컨설팅팀 -->
                         <div class="timeline-item">
-                            <div class="timeline-marker bg-success"></div>
+                            <div class="timeline-date">
+                                <span class="badge bg-success px-3 py-2">2022.01 - 2023.12</span>
+                            </div>
                             <div class="timeline-content">
-                                <div class="timeline-header">
-                                    <h4 class="timeline-title text-success">윈스 정보보안 컨설팅팀 주임</h4>
-                                    <span class="timeline-date badge bg-success">2022.01 - 2023.12</span>
+                                <h4 class="timeline-title text-success mb-3">
+                                    <i class="bi bi-shield-check me-2"></i>
+                                    윈스 정보보안 컨설팅팀 주임
+                                </h4>
+                                <div class="timeline-description">
+                                    <p class="text-light-50 mb-3">
+                                        정부기관, 공공기관, 금융기관 대상 보안컨설팅 전문 수행
+                                    </p>
+                                    <ul class="timeline-highlights">
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>문화재청, 식품의약품안전처, 중앙선거관리위원회 등 정부기관</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>경기도청, 김포시청, 대전교육정보원 등 지자체/교육기관</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>대형 카드사, 국민건강보험공단 등 금융/공공기관</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>PL 대무 역할 수행으로 프로젝트 관리 경험 축적</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>신규 취약점 발견: Unity Command Injection, AWS S3 접근 등</li>
+                                    </ul>
                                 </div>
-                                <p class="timeline-text text-light-50">
-                                    정부기관, 공공기관, 금융기관 대상 보안컨설팅 수행<br>
-                                    • 문화재청, 식품의약품안전처, 중앙선거관리위원회 등 정부기관<br>
-                                    • 경기도청, 김포시청, 대전교육정보원 등 지자체/교육기관<br>
-                                    • BC카드, 현대카드, 국민건강보험공단 등 금융/공공기관<br>
-                                    • PL 대무 역할 수행으로 프로젝트 관리 경험 축적<br>
-                                    • 신규 취약점 발견: Unity Command Injection, AWS S3 접근 등
-                                </p>
                             </div>
                         </div>
 
-                        <!-- 2020년 대학 프로젝트 -->
+                        <!-- 대학 연구 프로젝트 -->
                         <div class="timeline-item">
-                            <div class="timeline-marker bg-warning"></div>
+                            <div class="timeline-date">
+                                <span class="badge bg-warning text-dark px-3 py-2">2020 - 2021</span>
+                            </div>
                             <div class="timeline-content">
-                                <div class="timeline-header">
-                                    <h4 class="timeline-title text-warning">대학 연구 프로젝트</h4>
-                                    <span class="timeline-date badge bg-warning text-dark">2020-2021</span>
+                                <h4 class="timeline-title text-warning mb-3">
+                                    <i class="bi bi-mortarboard me-2"></i>
+                                    대학 연구 프로젝트 및 전문 교육
+                                </h4>
+                                <div class="timeline-description">
+                                    <p class="text-light-50 mb-3">
+                                        수원대학교 정보보호학과 졸업 연구 및 전문 교육과정 이수
+                                    </p>
+                                    <ul class="timeline-highlights">
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>N-gram을 이용한 악성 DGA-DNS 판별 프로그램 개발</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>디바이스 드라이버를 활용한 랩톱 보안 소프트웨어 개발</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>한이음 프로젝트 팀장 역할 수행</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>추계학술대회 논문 게재 및 발표</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>정보처리기사 자격증 취득 (2021.11)</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>K-shield Jr 정보보호 관리진단 과정 이수</li>
+                                    </ul>
                                 </div>
-                                <p class="timeline-text text-light-50">
-                                    수원대학교 정보보호학과 졸업 연구<br>
-                                    • N-gram을 이용한 악성 DGA-DNS 판별 프로그램 개발<br>
-                                    • 디바이스 드라이버를 활용한 랩톱 보안 소프트웨어 개발<br>
-                                    • 한이음 프로젝트 팀장 역할 수행<br>
-                                    • 추계학술대회 논문 게재 및 발표<br>
-                                    • 정보처리기사 자격증 취득 (2021.11)
-                                </p>
                             </div>
                         </div>
 
-                        <!-- 2018-2019년 군 복무 -->
+                        <!-- 군 복무 -->
                         <div class="timeline-item">
-                            <div class="timeline-marker bg-info"></div>
+                            <div class="timeline-date">
+                                <span class="badge bg-info px-3 py-2">2018.01 - 2019.09</span>
+                            </div>
                             <div class="timeline-content">
-                                <div class="timeline-header">
-                                    <h4 class="timeline-title text-info">육군 정보보호병</h4>
-                                    <span class="timeline-date badge bg-info">2018.01 - 2019.09</span>
+                                <h4 class="timeline-title text-info mb-3">
+                                    <i class="bi bi-star me-2"></i>
+                                    육군 정보보호병
+                                </h4>
+                                <div class="timeline-description">
+                                    <p class="text-light-50 mb-3">
+                                        육군 정보보호병으로 복무 (병장 만기전역)
+                                    </p>
+                                    <ul class="timeline-highlights">
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>군 네트워크 보안 업무 수행</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>정보보안 실무 경험 축적</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>보안 관제 및 모니터링 업무</li>
+                                    </ul>
                                 </div>
-                                <p class="timeline-text text-light-50">
-                                    육군 정보보호병으로 복무 (병장 만기전역)<br>
-                                    • 군 네트워크 보안 업무 수행<br>
-                                    • 정보보안 실무 경험 축적<br>
-                                    • 보안 관제 및 모니터링 업무
-                                </p>
                             </div>
                         </div>
 
-                        <!-- 2016-2022년 대학 -->
+                        <!-- 대학 교육 -->
                         <div class="timeline-item">
-                            <div class="timeline-marker bg-secondary"></div>
+                            <div class="timeline-date">
+                                <span class="badge bg-secondary px-3 py-2">2016.03 - 2022.02</span>
+                            </div>
                             <div class="timeline-content">
-                                <div class="timeline-header">
-                                    <h4 class="timeline-title text-secondary">수원대학교 정보보호학과</h4>
-                                    <span class="timeline-date badge bg-secondary">2016.03 - 2022.02</span>
+                                <h4 class="timeline-title text-secondary mb-3">
+                                    <i class="bi bi-book me-2"></i>
+                                    수원대학교 정보보호학과
+                                </h4>
+                                <div class="timeline-description">
+                                    <p class="text-light-50 mb-3">
+                                        정보보호학과 학사 졸업 (학점 3.28/4.5)
+                                    </p>
+                                    <ul class="timeline-highlights">
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>정보보안 이론 및 실습 전문 교육</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>Python, C/C++ 프로그래밍 역량 구축</li>
+                                        <li><i class="bi bi-check-circle text-success me-2"></i>얼굴인식 동영상 강의 프로그램 개발 (OpenCV)</li>
+                                    </ul>
                                 </div>
-                                <p class="timeline-text text-light-50">
-                                    정보보호학과 학사 졸업 (학점 3.28/4.5)<br>
-                                    • 정보보안 이론 및 실습 전문 교육<br>
-                                    • Python, C/C++ 프로그래밍 역량 구축<br>
-                                    • 얼굴인식 동영상 강의 프로그램 개발 (OpenCV)
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -454,7 +483,7 @@
         </div>
     </section>
 
-    <!-- 연락처 섹션 - 간단하고 전문적인 연락 방법 제공 -->
+    <!-- 연락처 섹션 -->
     <section id="contact" class="py-5 bg-dark-subtle">
         <div class="container">
             <div class="row">
@@ -500,13 +529,13 @@
         </div>
     </section>
 
-    <!-- 푸터 - 간결하고 전문적인 마무리 -->
+    <!-- 푸터 -->
     <footer class="py-4 bg-dark">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
                     <p class="text-light-50 mb-0">
-                        &copy; 2024 정보보안 컨설턴트 최지원. 모든 권리 보유.
+                        &copy; 2025 정보보안 컨설턴트 최지원. 모든 권리 보유.
                     </p>
                 </div>
             </div>
