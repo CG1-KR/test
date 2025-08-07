@@ -311,7 +311,7 @@ document.addEventListener('keydown', function(e) {
 /**
  * 개발자 콘솔 메시지
  */
-console.log('%c🛡️ 최지원 정보보안 컨설턴트', 'color: #20b2aa; font-size: 18px; font-weight: bold;');
+console.log('%c🛡️ 최지원 정보보안 컨설턴트', 'color: #4a90e2; font-size: 18px; font-weight: bold;');
 console.log('%c정보보안 컨설팅 문의 환영합니다! 🚀', 'color: #32cd32; font-size: 14px;');
 console.log('📧 이메일: jwc*******@naver.com');
 console.log('📞 전화: 010-****-8782');
