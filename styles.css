@@ -1,49 +1,379 @@
-/* 전체 레이아웃 및 색상 정의 */
+/* ===================================
+   Custom CSS for Security Portfolio
+   =================================== */
+
+/* 루트 변수 정의 - 색상 테마 일관성 유지 */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --dark-color: #212529;
+    --light-bg: #f8f9fa;
+    --timeline-color: #e9ecef;
+}
+
+/* 전체 body 스타일 */
 body {
-  font-family: 'Segoe UI', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    padding-top: 56px; /* navbar 높이만큼 패딩 */
 }
 
-/* 타임라인 스타일 */
+/* ===================================
+   Navigation Bar Styles
+   =================================== */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
+.navbar-brand i {
+    margin-right: 0.5rem;
+}
+
+/* ===================================
+   Hero Section Styles
+   =================================== */
+.hero-section {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #343a40 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
+    pointer-events: none;
+}
+
+.hero-section h1 {
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-section h2 {
+    animation: fadeInUp 1s ease-out 0.2s;
+    animation-fill-mode: both;
+}
+
+.hero-section .lead {
+    animation: fadeInUp 1s ease-out 0.4s;
+    animation-fill-mode: both;
+}
+
+.hero-buttons {
+    animation: fadeInUp 1s ease-out 0.6s;
+    animation-fill-mode: both;
+}
+
+/* ===================================
+   Card Styles
+   =================================== */
+.card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.skill-card {
+    border: 1px solid #e0e0e0;
+}
+
+.skill-card:hover {
+    border-color: var(--primary-color);
+}
+
+/* ===================================
+   Table Styles
+   =================================== */
+.table-responsive {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.project-row {
+    transition: all 0.3s ease;
+}
+
+.project-row.hide {
+    display: none;
+}
+
+/* ===================================
+   Badge Styles
+   =================================== */
+.badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+    margin: 0 0.2rem;
+}
+
+.bg-purple {
+    background-color: #6f42c1 !important;
+}
+
+/* ===================================
+   Timeline Styles
+   =================================== */
 .timeline {
-  list-style: none;
-  padding: 0;
-  position: relative;
-  border-left: 3px solid #0d6efd;
-  margin-left: 20px;
+    position: relative;
+    padding: 20px 0;
 }
 
-.timeline li {
-  margin: 20px 0;
-  position: relative;
-  padding-left: 20px;
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--timeline-color);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 4px white, 0 0 0 6px var(--timeline-color);
 }
 
 .timeline-date {
-  font-weight: bold;
-  color: #0d6efd;
-  display: block;
-  margin-bottom: 5px;
+    position: absolute;
+    left: 0;
+    top: -5px;
+    width: 45%;
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary-color);
 }
 
 .timeline-content {
-  background-color: #f8f9fa;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border-left: 4px solid #0d6efd;
+    position: relative;
+    left: 55%;
+    width: 45%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.timeline-content h5 {
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.timeline-content ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+.timeline-content li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+/* ===================================
+   Button Styles
+   =================================== */
+.btn {
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+}
+
+.filter-btn {
+    margin-bottom: 0.5rem;
+    min-width: 80px;
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* ===================================
+   Modal Styles
+   =================================== */
+.modal-content {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+    background-color: var(--light-bg);
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-body h6 {
+    color: var(--primary-color);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.modal-body h6:first-child {
+    margin-top: 0;
+}
+
+/* ===================================
+   Contact Section Styles
+   =================================== */
+.contact-info {
+    font-size: 1.1rem;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+/* ===================================
+   Animations
+   =================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   Responsive Styles
+   =================================== */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section h2 {
+        font-size: 1.2rem;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-item::before {
+        left: 30px;
+    }
+    
+    .timeline-date {
+        position: relative;
+        left: 0;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 10px;
+        margin-left: 60px;
+    }
+    
+    .timeline-content {
+        left: 60px;
+        width: calc(100% - 60px);
+    }
+    
+    .table {
+        font-size: 0.875rem;
+    }
+    
+    .badge {
+        font-size: 0.75rem;
+    }
 }
 
 @media (max-width: 576px) {
-  .timeline-content {
-    font-size: 0.9rem;
-  }
+    .hero-buttons .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .hero-buttons .btn:last-child {
+        margin-bottom: 0;
+    }
 }
 
-/* 테이블 반응형 개선 */
-.table td, .table th {
-  vertical-align: middle;
+/* ===================================
+   Utility Classes
+   =================================== */
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
 }
 
-/* 푸터 스타일 */
-footer {
-  font-size: 0.9rem;
+.text-muted {
+    color: #6c757d !important;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Section padding adjustment for fixed navbar */
+section {
+    scroll-margin-top: 80px;
 }
