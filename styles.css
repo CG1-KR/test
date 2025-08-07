@@ -1,536 +1,68 @@
-/* ===================================
-   Timeline Styles
-   =================================== */
-.timeline {
-    position: relative;
-    padding: 20px 0;
+/* ===== 나만의 포트폴리오 스타일 ===== */
+
+/* 프로필 이미지 강조 */
+.profile-img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  box-shadow: 0 2px 10px rgba(51,51,51,0.08);
+  border: 4px solid #dee2e6;
 }
 
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--timeline-color);
-    transform/* ===================================
-   Custom CSS for Security Portfolio
-   =================================== */
-
-/* 루트 변수 정의 - 색상 테마 일관성 유지 */
-:root {
-    --primary-color: #0d6efd;
-    --secondary-color: #6c757d;
-    --success-color: #198754;
-    --dark-color: #212529;
-    --light-bg: #f8f9fa;
-    --timeline-color: #e9ecef;
+/* 태그 배지 색상 및 구분 */
+.tag-web {
+  background-color: #007bff;
+  color: #fff;
 }
-
-/* 전체 body 스타일 */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    padding-top: 56px; /* navbar 높이만큼 패딩 */
+.tag-app {
+  background-color: #ffc107;
+  color: #212529;
 }
-
-/* CSS Reset for better consistency */
-* {
-    box-sizing: border-box;
+.tag-infra {
+  background-color: #28a745;
+  color: #fff;
 }
-
-/* ===================================
-   Navigation Bar Styles
-   =================================== */
-.navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,.1);
-    transition: all 0.3s ease;
-}
-
-.navbar-brand {
-    font-weight: 600;
-    font-size: 1.3rem;
-}
-
-.navbar-brand i {
-    margin-right: 0.5rem;
-}
-
-/* ===================================
-   Hero Section Styles
-   =================================== */
-.hero-section {
-    background: linear-gradient(135deg, var(--dark-color) 0%, #343a40 100%);
-    color: white;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
-    pointer-events: none;
-}
-
-.hero-section h1 {
-    animation: fadeInUp 1s ease-out;
-}
-
-.hero-section h2 {
-    animation: fadeInUp 1s ease-out 0.2s;
-    animation-fill-mode: both;
-}
-
-.hero-section .lead {
-    animation: fadeInUp 1s ease-out 0.4s;
-    animation-fill-mode: both;
-}
-
-.hero-buttons {
-    animation: fadeInUp 1s ease-out 0.6s;
-    animation-fill-mode: both;
-}
-
-/* ===================================
-   Card Styles
-   =================================== */
-.card {
-    border: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.skill-card {
-    border: 1px solid #e0e0e0;
-}
-
-.skill-card:hover {
-    border-color: var(--primary-color);
-}
-
-/* ===================================
-   Table Styles
-   =================================== */
-.table-responsive {
-    border-radius: 0.5rem;
-    box-shadow: 0 0 20px rgba(0,0,0,0.05);
-}
-
-.table {
-    margin-bottom: 0;
-}
-
-.table thead th {
-    border-bottom: 2px solid #dee2e6;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    letter-spacing: 0.5px;
-}
-
-.table tbody tr {
-    transition: background-color 0.3s ease;
-}
-
-.table tbody tr:hover {
-    background-color: rgba(13, 110, 253, 0.05);
-}
-
-.project-row {
-    transition: all 0.3s ease;
-}
-
-.project-row.hide {
-    display: none;
-}
-
-/* ===================================
-   Badge Styles
-   =================================== */
 .badge {
-    font-weight: 500;
-    padding: 0.35em 0.65em;
-    margin: 0 0.2rem;
+  font-size: 0.95em;
+  margin-right: 3px;
 }
 
-.bg-purple {
-    background-color: #6f42c1 !important;
+/* 타임라인 카드 */
+.timeline-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #f8f9fa;
+}
+.timeline-wrapper::-webkit-scrollbar {
+  height: 8px;
+  background: #f8f9fa;
+}
+.timeline-wrapper::-webkit-scrollbar-thumb {
+  background: #adb5bd;
+  border-radius: 4px;
+}
+.timeline-card {
+  min-width: 250px;
+  max-width: 260px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(80,80,80,0.09);
+  transition: transform 0.2s;
+}
+.timeline-card:hover {
+  transform: translateY(-6px) scale(1.04);
 }
 
-/* ===================================
-   Timeline Styles
-   =================================== */
-.timeline {
-    position: relative;
-    padding: 20px 0;
+/* 반응형 조정 */
+@media (max-width: 575px) {
+  .profile-img { width: 80px; height: 80px; }
+  .timeline-card { min-width: 170px; max-width: 185px; font-size: 0.9em; }
+  h2 { font-size: 1.3em; }
 }
 
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #e9ecef;
-    transform: translateX(-50%);
+@media (max-width: 991px) {
+  #intro .col-md-2 { text-align: center; }
 }
 
-.timeline-item {
-    position: relative;
-    margin-bottom: 50px;
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    background: #0d6efd;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 0 4px white, 0 0 0 6px #e9ecef;
-    z-index: 1;
-}
-
-.timeline-date {
-    position: absolute;
-    left: 0;
-    top: -5px;
-    width: 45%;
-    text-align: right;
-    font-weight: 600;
-    color: #0d6efd;
-    font-size: 1.1rem;
-    padding-right: 30px;
-}
-
-.timeline-content {
-    position: relative;
-    left: 55%;
-    width: 45%;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.timeline-content h5 {
-    margin-bottom: 10px;
-    color: #212529;
-}
-
-.timeline-content p {
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-}
-
-.timeline-content ul {
-    margin-bottom: 0;
-    padding-left: 20px;
-}
-
-.timeline-content li {
-    margin-bottom: 5px;
-    font-size: 0.9rem;
-}
-
-/* ===================================
-   Button Styles
-   =================================== */
-.btn {
-    transition: all 0.3s ease;
-    border-radius: 5px;
-    font-weight: 500;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn-primary:hover {
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
-}
-
-.filter-btn {
-    margin-bottom: 0.5rem;
-    min-width: 80px;
-}
-
-.filter-btn.active {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-/* ===================================
-   Modal Styles
-   =================================== */
-.modal-content {
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.modal-header {
-    background-color: var(--light-bg);
-    border-bottom: 1px solid #dee2e6;
-    border-radius: 10px 10px 0 0;
-}
-
-.modal-body h6 {
-    color: var(--primary-color);
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.modal-body h6:first-child {
-    margin-top: 0;
-}
-
-/* ===================================
-   Skills Section Styles (Updated)
-   =================================== */
-.language-tags {
-    margin-top: 1rem;
-}
-
-.language-tags .badge {
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-/* ===================================
-   Skills Section Styles (New Design)
-   =================================== */
-.skill-section {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.skill-category {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.category-label {
-    min-width: 100px;
-    font-size: 0.9rem;
-    color: #6c757d;
-    font-weight: 500;
-}
-
-.skill-pill {
-    display: inline-block;
-    padding: 4px 14px;
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 16px;
-    font-size: 0.85rem;
-    color: #333;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-}
-
-.skill-pill:hover {
-    background-color: #f0f0f0;
-    border-color: #ccc;
-}
-
-/* ===================================
-   Certifications Section Styles (Updated)
-   =================================== */
-.certification-badge,
-.education-badge,
-.education-list {
-    padding: 20px;
-}
-
-.certification-badge h5,
-.education-badge h5 {
-    color: var(--dark-color);
-    font-weight: 600;
-}
-
-.education-list h6 {
-    color: var(--dark-color);
-    font-weight: 600;
-}
-
-.card.shadow-sm {
-    transition: transform 0.3s ease;
-}
-
-.card.shadow-sm:hover {
-    transform: translateY(-5px);
-}
-
-/* ===================================
-   Domain Experience Section Styles
-   =================================== */
-.domain-card {
-    padding: 30px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.domain-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.domain-card h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 15px 0;
-}
-
-.domain-card ul {
-    font-size: 0.9rem;
-}
-
-.domain-card li {
-    margin-bottom: 8px;
-}
-
-#domainChart {
-    max-width: 100%;
-    height: auto !important;
-}
-.contact-info {
-    font-size: 1.1rem;
-}
-
-.contact-info i {
-    margin-right: 10px;
-    color: var(--primary-color);
-}
-
-/* ===================================
-   Animations
-   =================================== */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ===================================
-   Responsive Styles
-   =================================== */
-@media (max-width: 768px) {
-    .hero-section h1 {
-        font-size: 2rem;
-    }
-    
-    .hero-section h2 {
-        font-size: 1.2rem;
-    }
-    
-    /* 모바일에서 타임라인 수정 */
-    .timeline::before {
-        left: 30px;
-    }
-    
-    .timeline-item::after {
-        left: 30px;
-    }
-    
-    .timeline-item.left .timeline-wrapper,
-    .timeline-item.right .timeline-wrapper {
-        padding-left: 60px;
-        padding-right: 0;
-    }
-    
-    .timeline-item.left .timeline-content,
-    .timeline-item.right .timeline-content {
-        width: 100%;
-        max-width: none;
-    }
-    
-    .timeline-item.left .timeline-date,
-    .timeline-item.right .timeline-date {
-        position: relative;
-        left: 0;
-        right: auto;
-        top: -10px;
-        margin-bottom: 10px;
-        margin-left: 60px;
-        text-align: left;
-        width: auto;
-    }
-    
-    .timeline-item.left .timeline-content::after,
-    .timeline-item.right .timeline-content::after {
-        display: none;
-    }
-    
-    .table {
-        font-size: 0.875rem;
-    }
-    
-    .badge {
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero-buttons .btn {
-        display: block;
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    
-    .hero-buttons .btn:last-child {
-        margin-bottom: 0;
-    }
-}
-
-/* ===================================
-   Utility Classes
-   =================================== */
-.shadow-sm {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
-}
-
-.text-muted {
-    color: #6c757d !important;
-}
-
-/* Smooth scroll behavior */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Section padding adjustment for fixed navbar */
-section {
-    scroll-margin-top: 80px;
+/* project table 작은 화면에서 폰트/간격 조정 */
+@media (max-width: 767px) {
+  table th, table td { font-size: 0.93em; padding: 0.55rem; }
 }
