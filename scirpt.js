@@ -1,22 +1,19 @@
-// 최지원 정보보안 컨설턴트 포트폴리오 - 가벼운 JavaScript
+// 최지원 정보보안 컨설턴트 포트폴리오 - 깔끔한 JavaScript
 
-/**
- * DOM 로드 후 초기화
- */
 document.addEventListener('DOMContentLoaded', function() {
     initNavigation();
     initProjectFilter();
     initScrollAnimations();
     initContactInteraction();
     
-    console.log('🔒 최지원 정보보안 컨설턴트 포트폴리오');
+    console.log('🌟 최지원 정보보안 컨설턴트 포트폴리오가 로드되었습니다.');
 });
 
 /**
  * 네비게이션 기능
  */
 function initNavigation() {
-    // 부드러운 스크롤링
+    // 부드러운 스크롤
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
     
     navLinks.forEach(link => {
@@ -27,7 +24,7 @@ function initNavigation() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const navbarHeight = 70;
+                const navbarHeight = 80;
                 const targetPosition = targetSection.offsetTop - navbarHeight;
                 
                 window.scrollTo({
@@ -37,9 +34,9 @@ function initNavigation() {
                 
                 // 모바일 메뉴 닫기
                 const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse.classList.contains('show')) {
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
                     const navbarToggler = document.querySelector('.navbar-toggler');
-                    navbarToggler.click();
+                    if (navbarToggler) navbarToggler.click();
                 }
             }
         });
@@ -55,7 +52,7 @@ function initNavigation() {
 function updateActiveNavItem() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-    const scrollPosition = window.scrollY + 100;
+    const scrollPosition = window.scrollY + 150;
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -74,10 +71,10 @@ function updateActiveNavItem() {
 }
 
 /**
- * 프로젝트 필터링 기능
+ * 프로젝트 필터링
  */
 function initProjectFilter() {
-    const filterButtons = document.querySelectorAll('.filter-buttons .btn');
+    const filterButtons = document.querySelectorAll('.filter-btn');
     const projectItems = document.querySelectorAll('.project-item');
     
     filterButtons.forEach(button => {
@@ -96,24 +93,22 @@ function initProjectFilter() {
                     item.style.display = 'block';
                     item.classList.remove('hidden');
                     
-                    // 순차적 애니메이션
+                    // 순차 애니메이션
                     setTimeout(() => {
                         item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
+                        item.style.transform = 'scale(1)';
                     }, index * 100);
                 } else {
                     item.classList.add('hidden');
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
                     
                     setTimeout(() => {
                         item.style.display = 'none';
-                    }, 300);
+                    }, 400);
                 }
             });
             
-            // 간단한 알림
-            showToast(`${getFilterName(filter)} 프로젝트를 표시합니다.`);
+            // 필터링 완료 알림
+            showNotification(`${getFilterName(filter)} 프로젝트를 표시합니다.`);
         });
     });
 }
@@ -125,7 +120,7 @@ function getFilterName(filter) {
     const filterNames = {
         'all': '전체',
         'web': '웹 보안',
-        'app': '앱 보안', 
+        'app': '앱 보안',
         'infra': '인프라 보안',
         'compliance': '컴플라이언스'
     };
@@ -141,10 +136,12 @@ function initScrollAnimations() {
             if (entry.isIntersecting) {
                 const element = entry.target;
                 
-                if (element.classList.contains('stat-card')) {
-                    animateCounter(element);
+                // 통계 숫자 애니메이션
+                if (element.classList.contains('stat-number')) {
+                    animateNumber(element);
                 }
                 
+                // 요소 표시 애니메이션
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
                 
@@ -152,12 +149,12 @@ function initScrollAnimations() {
             }
         });
     }, {
-        threshold: 0.1,
+        threshold: 0.2,
         rootMargin: '0px 0px -50px 0px'
     });
     
-    // 애니메이션 대상 요소들 관찰
-    const animateElements = document.querySelectorAll('.stat-card, .timeline-item, .contact-card');
+    // 애니메이션 대상 요소들
+    const animateElements = document.querySelectorAll('.stat-number, .service-card, .project-card, .timeline-item, .contact-item');
     animateElements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
@@ -167,13 +164,10 @@ function initScrollAnimations() {
 }
 
 /**
- * 숫자 카운트 애니메이션
+ * 숫자 애니메이션
  */
-function animateCounter(element) {
-    const counterElement = element.querySelector('h3');
-    if (!counterElement) return;
-    
-    const targetText = counterElement.textContent;
+function animateNumber(element) {
+    const targetText = element.textContent;
     const targetNumber = parseFloat(targetText.replace(/[^0-9.]/g, ''));
     const suffix = targetText.replace(/[0-9.]/g, '');
     
@@ -181,20 +175,20 @@ function animateCounter(element) {
     
     let currentNumber = 0;
     const increment = targetNumber / 30;
-    const duration = 1000;
+    const duration = 1200;
     const stepTime = duration / 30;
     
     const timer = setInterval(() => {
         currentNumber += increment;
         
         if (currentNumber >= targetNumber) {
-            counterElement.textContent = targetText;
+            element.textContent = targetText;
             clearInterval(timer);
         } else {
             if (targetText.includes('.')) {
-                counterElement.textContent = currentNumber.toFixed(1) + suffix;
+                element.textContent = currentNumber.toFixed(1) + suffix;
             } else {
-                counterElement.textContent = Math.floor(currentNumber) + suffix;
+                element.textContent = Math.floor(currentNumber) + suffix;
             }
         }
     }, stepTime);
@@ -204,71 +198,76 @@ function animateCounter(element) {
  * 연락처 상호작용
  */
 function initContactInteraction() {
-    const contactCards = document.querySelectorAll('.contact-card');
+    const contactItems = document.querySelectorAll('.contact-item');
     
-    contactCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const iconClass = this.querySelector('i').className;
+    contactItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            let message = '';
             
-            if (iconClass.includes('envelope')) {
-                showToast('이메일 문의를 원하시면 포트폴리오를 통해 연락처를 확인해주세요!');
-            } else if (iconClass.includes('telephone')) {
-                showToast('정보보안 컨설팅 관련 문의는 언제든 연락해주세요!');
-            } else if (iconClass.includes('linkedin')) {
-                showToast('LinkedIn을 통해 연결해보세요!');
+            if (icon.classList.contains('bi-envelope')) {
+                message = '이메일 문의를 원하시면 포트폴리오를 통해 연락처를 확인해주세요! 📧';
+            } else if (icon.classList.contains('bi-telephone')) {
+                message = '정보보안 컨설팅 관련 문의는 언제든 연락해주세요! 📞';
+            } else if (icon.classList.contains('bi-linkedin')) {
+                message = 'LinkedIn을 통해 네트워킹해보세요! 💼';
+            }
+            
+            if (message) {
+                showNotification(message);
             }
         });
-        
-        // 클릭 가능함을 시각적으로 표시
-        card.style.cursor = 'pointer';
     });
 }
 
 /**
- * 간단한 토스트 알림
+ * 알림 메시지 표시
  */
-function showToast(message) {
-    // 기존 토스트 제거
-    const existingToast = document.querySelector('.custom-toast');
-    if (existingToast) {
-        existingToast.remove();
+function showNotification(message) {
+    // 기존 알림 제거
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
     }
     
-    // 새 토스트 생성
-    const toast = document.createElement('div');
-    toast.className = 'custom-toast';
-    toast.textContent = message;
+    // 새 알림 생성
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
     
     // 스타일 적용
-    Object.assign(toast.style, {
+    Object.assign(notification.style, {
         position: 'fixed',
         top: '20px',
         right: '20px',
-        background: '#212529',
-        color: 'white',
-        padding: '12px 20px',
-        borderRadius: '8px',
+        background: 'white',
+        color: '#2c3e50',
+        padding: '15px 20px',
+        borderRadius: '10px',
         fontSize: '14px',
+        fontWeight: '500',
         zIndex: '9999',
+        border: '1px solid #e8f6f3',
+        boxShadow: '0 4px 20px rgba(32, 178, 170, 0.15)',
         transform: 'translateX(100%)',
         transition: 'transform 0.3s ease',
-        maxWidth: '300px',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+        maxWidth: '320px',
+        lineHeight: '1.4'
     });
     
-    document.body.appendChild(toast);
+    document.body.appendChild(notification);
     
-    // 애니메이션
+    // 애니메이션으로 표시
     setTimeout(() => {
-        toast.style.transform = 'translateX(0)';
+        notification.style.transform = 'translateX(0)';
     }, 100);
     
-    // 3초 후 제거
+    // 3초 후 자동 제거
     setTimeout(() => {
-        toast.style.transform = 'translateX(100%)';
+        notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
-            if (toast.parentElement) {
-                toast.remove();
+            if (notification.parentElement) {
+                notification.remove();
             }
         }, 300);
     }, 3000);
@@ -281,9 +280,9 @@ window.addEventListener('resize', function() {
     // 모바일에서 네비게이션 메뉴 자동 닫기
     if (window.innerWidth > 768) {
         const navbarCollapse = document.querySelector('.navbar-collapse');
-        if (navbarCollapse.classList.contains('show')) {
+        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
             const navbarToggler = document.querySelector('.navbar-toggler');
-            navbarToggler.click();
+            if (navbarToggler) navbarToggler.click();
         }
     }
 });
@@ -292,36 +291,27 @@ window.addEventListener('resize', function() {
  * 키보드 접근성
  */
 document.addEventListener('keydown', function(e) {
-    // ESC 키로 토스트 닫기
+    // ESC 키로 알림 닫기
     if (e.key === 'Escape') {
-        const toast = document.querySelector('.custom-toast');
-        if (toast) {
-            toast.remove();
+        const notification = document.querySelector('.notification');
+        if (notification) {
+            notification.remove();
         }
     }
     
-    // 엔터 키로 연락처 카드 클릭
+    // 엔터 키로 연락처 아이템 클릭
     if (e.key === 'Enter') {
         const focusedElement = document.activeElement;
-        if (focusedElement.classList.contains('contact-card')) {
+        if (focusedElement && focusedElement.classList.contains('contact-item')) {
             focusedElement.click();
         }
     }
 });
 
 /**
- * 페이지 성능 체크
- */
-window.addEventListener('load', function() {
-    const loadTime = performance.now();
-    if (loadTime < 2000) {
-        console.log(`⚡ 페이지가 빠르게 로드되었습니다: ${Math.round(loadTime)}ms`);
-    }
-});
-
-/**
  * 개발자 콘솔 메시지
  */
-console.log('%c🛡️ 최지원 정보보안 컨설턴트', 'color: #0d6efd; font-size: 16px; font-weight: bold;');
-console.log('%c정보보안 컨설팅 문의 환영합니다!', 'color: #198754; font-size: 12px;');
-console.log('📞 문의: jwc*******@naver.com | 010-****-8782');
+console.log('%c🛡️ 최지원 정보보안 컨설턴트', 'color: #20b2aa; font-size: 18px; font-weight: bold;');
+console.log('%c정보보안 컨설팅 문의 환영합니다! 🚀', 'color: #32cd32; font-size: 14px;');
+console.log('📧 이메일: jwc*******@naver.com');
+console.log('📞 전화: 010-****-8782');
