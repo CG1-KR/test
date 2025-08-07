@@ -1,9 +1,8 @@
 // 보안 컨설팅 포트폴리오 JavaScript
-// 사용자 경험 향상을 위한 인터랙티브 기능들
+// 최지원 정보보안 컨설턴트 포트폴리오
 
 /**
  * DOM이 완전히 로드된 후 실행되는 메인 함수
- * 모든 이벤트 리스너와 초기화 작업을 수행
  */
 document.addEventListener('DOMContentLoaded', function() {
     // 각 기능별 초기화 함수 호출
@@ -14,11 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
     initTypingEffect();
     initTooltips();
     initContactForm();
+    
+    console.log('🔒 최지원 정보보안 컨설턴트 포트폴리오가 로드되었습니다.');
 });
 
 /**
  * 네비게이션 바 스크롤 효과
- * 스크롤 시 네비게이션 바의 투명도와 크기를 조정하여 현대적인 느낌 제공
  */
 function initNavbarScroll() {
     const navbar = document.querySelector('.custom-navbar');
@@ -29,10 +29,8 @@ function initNavbarScroll() {
         
         // 스크롤 방향에 따른 네비게이션 바 표시/숨김
         if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // 아래로 스크롤 시 네비게이션 바 숨김
             navbar.style.transform = 'translateY(-100%)';
         } else {
-            // 위로 스크롤 시 네비게이션 바 표시
             navbar.style.transform = 'translateY(0)';
         }
         
@@ -44,15 +42,12 @@ function initNavbarScroll() {
         }
         
         lastScrollTop = scrollTop;
-        
-        // 현재 섹션에 따른 네비게이션 활성화 상태 업데이트
         updateActiveNavItem();
     });
 }
 
 /**
  * 부드러운 스크롤링 구현
- * 네비게이션 링크 클릭 시 해당 섹션으로 부드럽게 이동
  */
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
@@ -68,7 +63,6 @@ function initSmoothScrolling() {
                 const navbarHeight = document.querySelector('.custom-navbar').offsetHeight;
                 const targetPosition = targetSection.offsetTop - navbarHeight - 20;
                 
-                // 부드러운 스크롤 애니메이션
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
@@ -99,10 +93,8 @@ function updateActiveNavItem() {
         const sectionId = section.getAttribute('id');
         
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            // 모든 네비게이션 링크에서 active 클래스 제거
             navLinks.forEach(link => link.classList.remove('active'));
             
-            // 현재 섹션에 해당하는 네비게이션 링크에 active 클래스 추가
             const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
             if (activeLink) {
                 activeLink.classList.add('active');
@@ -113,7 +105,6 @@ function updateActiveNavItem() {
 
 /**
  * 프로젝트 필터링 기능
- * 프로젝트 유형별로 테이블 행을 필터링하여 사용자가 원하는 정보를 쉽게 찾도록 지원
  */
 function initProjectFilter() {
     const filterButtons = document.querySelectorAll('.filter-buttons .btn');
@@ -132,27 +123,41 @@ function initProjectFilter() {
                 const categories = row.getAttribute('data-category').split(' ');
                 
                 if (filter === 'all' || categories.includes(filter)) {
-                    // 해당 카테고리에 맞는 행 표시
                     setTimeout(() => {
                         row.style.display = 'table-row';
                         row.classList.remove('hidden');
                         row.style.animation = `slideInLeft 0.5s ease-out ${index * 0.1}s both`;
                     }, index * 50);
                 } else {
-                    // 해당 카테고리에 맞지 않는 행 숨김
                     row.classList.add('hidden');
                     setTimeout(() => {
                         row.style.display = 'none';
                     }, 300);
                 }
             });
+            
+            // 필터링 완료 알림
+            showNotification(`${getFilterDisplayName(filter)} 프로젝트로 필터링했습니다.`, 'info');
         });
     });
 }
 
 /**
+ * 필터 표시명 반환
+ */
+function getFilterDisplayName(filter) {
+    const filterNames = {
+        'all': '전체',
+        'web': '웹 보안',
+        'app': '앱 보안',
+        'infra': '인프라 보안',
+        'compliance': '컴플라이언스'
+    };
+    return filterNames[filter] || '알 수 없음';
+}
+
+/**
  * 스크롤 기반 애니메이션
- * 요소가 화면에 나타날 때 애니메이션 효과 적용
  */
 function initScrollAnimations() {
     const observerOptions = {
@@ -160,30 +165,25 @@ function initScrollAnimations() {
         rootMargin: '0px 0px -50px 0px'
     };
     
-    // Intersection Observer를 사용하여 요소가 뷰포트에 들어올 때 애니메이션 실행
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
                 
-                // 각 요소 타입에 따른 애니메이션 적용
                 if (element.classList.contains('timeline-item')) {
                     element.style.animation = 'slideInLeft 0.8s ease-out forwards';
                 } else if (element.classList.contains('contact-item')) {
                     element.style.animation = 'fadeInUp 0.6s ease-out forwards';
                 } else if (element.classList.contains('stat-item')) {
                     element.style.animation = 'fadeInUp 0.5s ease-out forwards';
-                    // 숫자 카운트업 애니메이션 실행
                     animateCounter(element);
                 }
                 
-                // 관찰 중지 (한 번만 실행)
                 observer.unobserve(element);
             }
         });
     }, observerOptions);
     
-    // 애니메이션 대상 요소들을 관찰 시작
     const animateElements = document.querySelectorAll('.timeline-item, .contact-item, .stat-item');
     animateElements.forEach(element => {
         observer.observe(element);
@@ -192,21 +192,20 @@ function initScrollAnimations() {
 
 /**
  * 숫자 카운트업 애니메이션
- * 통계 수치가 0부터 목표값까지 증가하는 애니메이션
  */
 function animateCounter(element) {
     const counterElement = element.querySelector('h3');
     if (!counterElement) return;
     
     const targetText = counterElement.textContent;
-    const targetNumber = parseInt(targetText.replace(/[^0-9]/g, ''));
-    const suffix = targetText.replace(/[0-9]/g, '');
+    const targetNumber = parseFloat(targetText.replace(/[^0-9.]/g, ''));
+    const suffix = targetText.replace(/[0-9.]/g, '');
     
     if (isNaN(targetNumber)) return;
     
     let currentNumber = 0;
-    const increment = targetNumber / 50; // 50단계로 나누어 애니메이션
-    const duration = 1500; // 1.5초 동안 애니메이션
+    const increment = targetNumber / 50;
+    const duration = 1500;
     const stepTime = duration / 50;
     
     const timer = setInterval(() => {
@@ -216,14 +215,17 @@ function animateCounter(element) {
             counterElement.textContent = targetText;
             clearInterval(timer);
         } else {
-            counterElement.textContent = Math.floor(currentNumber) + suffix;
+            if (targetText.includes('.')) {
+                counterElement.textContent = currentNumber.toFixed(1) + suffix;
+            } else {
+                counterElement.textContent = Math.floor(currentNumber) + suffix;
+            }
         }
     }, stepTime);
 }
 
 /**
  * 타이핑 효과
- * 히어로 섹션의 제목에 타이핑 애니메이션 효과 적용
  */
 function initTypingEffect() {
     const titleElement = document.querySelector('.hero-content h1');
@@ -254,210 +256,56 @@ function initTypingEffect() {
         }
     }
     
-    // 페이지 로드 후 1초 뒤에 타이핑 시작
     setTimeout(typeCharacter, 1000);
 }
 
 /**
  * 툴팁 기능 초기화
- * Bootstrap 툴팁을 활성화하여 추가 정보 제공
  */
 function initTooltips() {
-    // Bootstrap 5 툴팁 초기화
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-    
     // 프로젝트 테이블 행에 툴팁 추가
     const projectRows = document.querySelectorAll('.project-row td:nth-child(5)');
     projectRows.forEach(cell => {
-        cell.setAttribute('data-bs-toggle', 'tooltip');
-        cell.setAttribute('data-bs-placement', 'top');
         cell.setAttribute('title', '프로젝트 상세 성과 정보');
+        cell.style.cursor = 'help';
+    });
+    
+    // 프로젝트 링크에 툴팁 추가
+    const projectLinks = document.querySelectorAll('.project-row .btn-outline-primary');
+    projectLinks.forEach(link => {
+        link.setAttribute('title', '프로젝트 상세 정보 보기');
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const row = this.closest('.project-row');
+            const projectName = row.querySelector('td:nth-child(2)').textContent;
+            const client = row.querySelector('td:nth-child(3)').textContent;
+            
+            showNotification(`${projectName} - ${client}에서 수행한 프로젝트입니다.`, 'info');
+        });
     });
 }
 
 /**
- * 연락처 폼 기능 (향후 확장 가능)
- * 연락처 버튼 클릭 시 이메일 클라이언트 열기 또는 클립보드 복사
+ * 연락처 폼 기능
  */
 function initContactForm() {
     const emailElement = document.querySelector('#contact .text-light-50');
     
     if (emailElement && emailElement.textContent.includes('@')) {
         emailElement.style.cursor = 'pointer';
+        emailElement.setAttribute('title', '클릭하여 이메일 안내 확인');
         
         emailElement.addEventListener('click', function() {
-            const email = this.textContent.trim();
-            
-            // 클립보드에 이메일 주소 복사
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(email).then(() => {
-                    showNotification('이메일 주소가 클립보드에 복사되었습니다!', 'success');
-                });
-            } else {
-                // 폴백: 이메일 클라이언트 열기
-                window.location.href = `mailto:${email}`;
-            }
+            showNotification('포트폴리오를 통해 연락처를 확인해주세요! 정보보안 컨설팅 문의 환영합니다.', 'info');
         });
     }
-}
-
-/**
- * 알림 메시지 표시 함수
- * 사용자 액션에 대한 피드백 제공
- */
-function showNotification(message, type = 'info') {
-    // 기존 알림이 있다면 제거
-    const existingNotification = document.querySelector('.custom-notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
     
-    // 새 알림 요소 생성
-    const notification = document.createElement('div');
-    notification.className = `custom-notification alert alert-${type === 'success' ? 'success' : 'info'}`;
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        z-index: 9999;
-        min-width: 300px;
-        padding: 15px;
-        border-radius: 10px;
-        background: var(--glass-bg);
-        border: 1px solid var(--glass-border);
-        backdrop-filter: blur(10px);
-        color: white;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-    `;
-    
-    notification.innerHTML = `
-        <div class="d-flex align-items-center">
-            <i class="bi bi-${type === 'success' ? 'check-circle' : 'info-circle'} me-2"></i>
-            <span>${message}</span>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // 애니메이션으로 알림 표시
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // 3초 후 자동 제거
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    }, 3000);
-}
-
-/**
- * 프로젝트 상세 정보 모달 (향후 확장용)
- * 프로젝트 링크 클릭 시 상세 정보를 보여주는 모달
- */
-function initProjectModal() {
-    const projectLinks = document.querySelectorAll('.project-row .btn-outline-primary');
-    
-    projectLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
+    // 전화번호 클릭 이벤트
+    const phoneElements = document.querySelectorAll('#contact .text-light-50');
+    phoneElements.forEach(element => {
+        if (element.textContent.includes('010-')) {
+            element.style.cursor = 'pointer';
+            element.setAttribute('title', '클릭하여 연락처 안내 확인');
             
-            // 상위 행에서 프로젝트 정보 추출
-            const row = this.closest('.project-row');
-            const projectName = row.querySelector('td:nth-child(2)').textContent;
-            const client = row.querySelector('td:nth-child(3)').textContent;
-            const achievement = row.querySelector('td:nth-child(5)').textContent;
-            
-            // 임시 알림으로 상세 정보 표시 (실제로는 모달 구현)
-            showNotification(`${projectName} 프로젝트 상세 정보를 준비 중입니다.`, 'info');
-        });
-    });
-}
-
-/**
- * 성능 최적화를 위한 디바운스 함수
- * 스크롤이나 리사이즈 이벤트의 과도한 호출을 방지
- */
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-/**
- * 반응형 디자인 지원
- * 화면 크기 변경 시 레이아웃 조정
- */
-window.addEventListener('resize', debounce(function() {
-    // 모바일 환경에서 네비게이션 메뉴 자동 닫기
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    if (window.innerWidth > 768 && navbarCollapse.classList.contains('show')) {
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        navbarToggler.click();
-    }
-}, 250));
-
-/**
- * 접근성 개선
- * 키보드 네비게이션 지원 및 스크린 리더 호환성
- */
-document.addEventListener('keydown', function(e) {
-    // ESC 키로 모달이나 드롭다운 닫기
-    if (e.key === 'Escape') {
-        const notification = document.querySelector('.custom-notification');
-        if (notification) {
-            notification.remove();
-        }
-    }
-    
-    // 탭 키 네비게이션 개선
-    if (e.key === 'Tab') {
-        document.body.classList.add('keyboard-navigation');
-    }
-});
-
-// 마우스 사용 시 키보드 네비게이션 스타일 제거
-document.addEventListener('mousedown', function() {
-    document.body.classList.remove('keyboard-navigation');
-});
-
-/**
- * 개발자 도구 감지 (선택사항)
- * 포트폴리오의 보안적 특성을 고려한 간단한 보안 조치
- */
-function detectDevTools() {
-    let devtools = {
-        open: false,
-        orientation: null
-    };
-    
-    setInterval(() => {
-        if (window.outerHeight - window.innerHeight > 160 || window.outerWidth - window.innerWidth > 160) {
-            if (!devtools.open) {
-                devtools.open = true;
-                console.log('🔒 보안 컨설턴트의 포트폴리오에 오신 것을 환영합니다!');
-                console.log('💼 보안 관련 문의는 언제든 연락해주세요.');
-            }
-        } else {
-            devtools.open = false;
-        }
-    }, 500);
-}
-
-// 개발자 도구 감지 시작 (부담스럽지 않은 수준으로)
-if (typeof window !== 'undefined') {
-    detectDevTools();
-}
+            element.addEventListener('click', function() {
