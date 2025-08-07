@@ -309,3 +309,277 @@ function initContactForm() {
             element.setAttribute('title', '클릭하여 연락처 안내 확인');
             
             element.addEventListener('click', function() {
+                showNotification('정보보안 컨설팅 관련 문의는 언제든 연락해주세요!', 'success');
+            });
+        }
+    });
+}
+
+/**
+ * 알림 메시지 표시 함수
+ */
+function showNotification(message, type = 'info') {
+    // 기존 알림이 있다면 제거
+    const existingNotification = document.querySelector('.custom-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // 알림 타입별 색상 설정
+    const typeColors = {
+        'info': '#0dcaf0',
+        'success': '#198754',
+        'warning': '#ffc107',
+        'error': '#dc3545'
+    };
+    
+    const typeIcons = {
+        'info': 'info-circle',
+        'success': 'check-circle',
+        'warning': 'exclamation-triangle',
+        'error': 'x-circle'
+    };
+    
+    // 새 알림 요소 생성
+    const notification = document.createElement('div');
+    notification.className = 'custom-notification';
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        z-index: 9999;
+        min-width: 350px;
+        max-width: 500px;
+        padding: 20px;
+        border-radius: 15px;
+        background: rgba(26, 26, 26, 0.95);
+        border: 1px solid ${typeColors[type]};
+        backdrop-filter: blur(10px);
+        color: white;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        transform: translateX(100%);
+        transition: all 0.4s ease;
+        font-family: 'Segoe UI', sans-serif;
+    `;
+    
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <i class="bi bi-${typeIcons[type]}" style="color: ${typeColors[type]}; font-size: 1.5rem; flex-shrink: 0;"></i>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 5px; color: ${typeColors[type]};">
+                    ${type === 'info' ? '정보' : type === 'success' ? '성공' : type === 'warning' ? '주의' : '오류'}
+                </div>
+                <div style="color: rgba(255,255,255,0.9); line-height: 1.4;">
+                    ${message}
+                </div>
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="background: none; border: none; color: rgba(255,255,255,0.6); font-size: 1.2rem; cursor: pointer; padding: 5px;">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // 애니메이션으로 알림 표시
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // 5초 후 자동 제거
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 400);
+        }
+    }, 5000);
+}
+
+/**
+ * 성능 최적화를 위한 디바운스 함수
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
+ * 반응형 디자인 지원
+ */
+window.addEventListener('resize', debounce(function() {
+    // 모바일 환경에서 네비게이션 메뉴 자동 닫기
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    if (window.innerWidth > 768 && navbarCollapse.classList.contains('show')) {
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        navbarToggler.click();
+    }
+    
+    // 알림 위치 조정
+    const notifications = document.querySelectorAll('.custom-notification');
+    notifications.forEach(notification => {
+        if (window.innerWidth <= 768) {
+            notification.style.right = '10px';
+            notification.style.left = '10px';
+            notification.style.minWidth = 'auto';
+        } else {
+            notification.style.right = '20px';
+            notification.style.left = 'auto';
+            notification.style.minWidth = '350px';
+        }
+    });
+}, 250));
+
+/**
+ * 접근성 개선
+ */
+document.addEventListener('keydown', function(e) {
+    // ESC 키로 알림 닫기
+    if (e.key === 'Escape') {
+        const notifications = document.querySelectorAll('.custom-notification');
+        notifications.forEach(notification => notification.remove());
+    }
+    
+    // 탭 키 네비게이션 개선
+    if (e.key === 'Tab') {
+        document.body.classList.add('keyboard-navigation');
+    }
+    
+    // 엔터 키로 프로젝트 상세 정보 보기
+    if (e.key === 'Enter') {
+        const focusedElement = document.activeElement;
+        if (focusedElement.classList.contains('btn-outline-primary')) {
+            focusedElement.click();
+        }
+    }
+});
+
+// 마우스 사용 시 키보드 네비게이션 스타일 제거
+document.addEventListener('mousedown', function() {
+    document.body.classList.remove('keyboard-navigation');
+});
+
+/**
+ * 프로젝트 통계 정보 표시
+ */
+function showProjectStats() {
+    const projectRows = document.querySelectorAll('.project-row');
+    const totalProjects = projectRows.length;
+    
+    const categories = {
+        web: 0,
+        app: 0,
+        infra: 0,
+        compliance: 0
+    };
+    
+    projectRows.forEach(row => {
+        const categoryAttr = row.getAttribute('data-category');
+        if (categoryAttr) {
+            const projectCategories = categoryAttr.split(' ');
+            projectCategories.forEach(cat => {
+                if (categories.hasOwnProperty(cat)) {
+                    categories[cat]++;
+                }
+            });
+        }
+    });
+    
+    console.log('📊 프로젝트 통계:', {
+        '총 프로젝트': totalProjects,
+        '웹 보안': categories.web,
+        '앱 보안': categories.app,
+        '인프라 보안': categories.infra,
+        '컴플라이언스': categories.compliance
+    });
+}
+
+/**
+ * 개발자 도구 감지 및 환영 메시지
+ */
+function detectDevTools() {
+    let devtools = {
+        open: false,
+        orientation: null
+    };
+    
+    setInterval(() => {
+        if (window.outerHeight - window.innerHeight > 160 || window.outerWidth - window.innerWidth > 160) {
+            if (!devtools.open) {
+                devtools.open = true;
+                console.log('🔒 최지원 정보보안 컨설턴트의 포트폴리오에 오신 것을 환영합니다!');
+                console.log('💼 웹/모바일 보안 진단, 모의해킹 관련 문의는 언제든 연락해주세요.');
+                console.log('🛡️ 3년 7개월간 윈스 정보보안팀에서 실무 경험을 쌓았습니다.');
+                console.log('🏢 현재 대형 통신사 그룹 전담 보안컨설턴트로 활동 중입니다.');
+                console.log('📈 17개 이상의 정부기관, 금융기관 프로젝트를 성공적으로 완료했습니다.');
+                
+                // 프로젝트 통계 표시
+                showProjectStats();
+                
+                // 기술 스택 정보
+                console.log('🔧 주요 기술 스택: Python, C/C++, Frida, AWS, Unity 보안, CVE 분석');
+            }
+        } else {
+            devtools.open = false;
+        }
+    }, 500);
+}
+
+/**
+ * 페이지 성능 모니터링
+ */
+function initPerformanceMonitoring() {
+    // 페이지 로드 시간 측정
+    window.addEventListener('load', function() {
+        const loadTime = performance.now();
+        console.log(`⚡ 페이지 로드 시간: ${Math.round(loadTime)}ms`);
+        
+        if (loadTime > 3000) {
+            console.warn('⚠️ 페이지 로드 시간이 3초를 초과했습니다.');
+        }
+    });
+    
+    // 스크롤 성능 모니터링
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const scrollTop = window.pageYOffset;
+            const documentHeight = document.documentElement.scrollHeight;
+            const windowHeight = window.innerHeight;
+            const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+            
+            // 스크롤 진행률이 특정 지점에 도달했을 때 이벤트 발생
+            if (scrollPercent > 25 && !sessionStorage.getItem('quarter_scrolled')) {
+                sessionStorage.setItem('quarter_scrolled', 'true');
+                console.log('📖 포트폴리오의 1/4 지점을 통과했습니다.');
+            }
+            
+            if (scrollPercent > 75 && !sessionStorage.getItem('three_quarter_scrolled')) {
+                sessionStorage.setItem('three_quarter_scrolled', 'true');
+                console.log('📖 포트폴리오의 3/4 지점을 통과했습니다. 거의 다 읽으셨네요!');
+            }
+        }, 100);
+    });
+}
+
+// 초기화 함수들 실행
+if (typeof window !== 'undefined') {
+    detectDevTools();
+    initPerformanceMonitoring();
+    
+    // 환영 메시지
+    console.log('%c🎯 최지원 정보보안 컨설턴트 포트폴리오', 'color: #0d6efd; font-size: 16px; font-weight: bold;');
+    console.log('%c보안 컨설팅 문의 환영합니다!', 'color: #198754; font-size: 14px;');
+}
