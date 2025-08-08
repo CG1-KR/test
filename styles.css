@@ -964,3 +964,23 @@ html {
     transform: scale(0.9);
     display: none;
 }
+.contact-grid-centered {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.contact-item {
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    max-width: 350px; /* 최대 너비 제한 */
+}
