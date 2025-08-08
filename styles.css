@@ -897,22 +897,6 @@ html {
     margin-bottom: 0.5rem;
     font-size: 1.3rem;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.contact-info h4::after {
-    content: '✉️';
-    font-size: 1rem;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.3s ease;
-}
-
-.contact-item:hover .contact-info h4::after {
-    opacity: 1;
-    transform: translateX(0);
 }
 
 .contact-info p {
