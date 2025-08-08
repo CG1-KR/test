@@ -435,13 +435,18 @@ html {
 }
 
 .tag.cloud {
-    background: #fff3e0;
+    background: #fff8e1;
     color: #f57c00;
 }
 
-.tag.api {
+.tag.infra {
     background: #fce4ec;
     color: #c2185b;
+}
+
+.tag.hacking {
+    background: #f3e5f5;
+    color: #7b1fa2;
 }
 
 .project-desc {
