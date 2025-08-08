@@ -964,3 +964,17 @@ html {
     transform: scale(0.9);
     display: none;
 }
+
+
+.contact-item {
+    background: var(--bg-light);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 🔥 이 줄 추가 - 가로 중앙 정렬 */
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
