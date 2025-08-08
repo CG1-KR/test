@@ -702,8 +702,8 @@ html {
 }
 
 .period-badge.project {
-    background: var(--success-color);
-    border-color: var(--success-color);
+    background: var(--info-color);
+    border-color: var(--info-color);
     color: white;
 }
 
