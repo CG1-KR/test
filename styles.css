@@ -434,12 +434,12 @@ html {
     color: #1976d2;
 }
 
-.tag.infra {
+.tag.cloud {
     background: #fff3e0;
     color: #f57c00;
 }
 
-.tag.compliance {
+.tag.api {
     background: #fce4ec;
     color: #c2185b;
 }
