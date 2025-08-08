@@ -121,8 +121,8 @@ function getFilterName(filter) {
         'all': '전체',
         'web': '웹 보안',
         'app': '앱 보안',
-        'infra': '인프라 보안',
-        'compliance': '컴플라이언스'
+        'cloud': '클라우드 보안',
+        'api': 'API 보안'
     };
     return filterNames[filter] || '프로젝트';
 }
