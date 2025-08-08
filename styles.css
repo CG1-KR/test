@@ -525,6 +525,12 @@ html {
     color: white;
 }
 
+.period-badge.project {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    color: white;
+}
+
 .timeline-content {
     background: white;
     padding: 2rem;
