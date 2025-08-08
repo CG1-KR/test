@@ -760,7 +760,7 @@ html {
     border-radius: 50%;
 }
 
-/* 🔥 연락처 섹션 - 2개 항목용으로 수정된 부분 */
+/* 🔥 연락처 섹션 - 칸 벗어남 문제 해결 */
 .contact-section {
     padding: 80px 0;
     background: white;
@@ -770,9 +770,9 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
-    max-width: 500px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -788,8 +788,8 @@ html {
     transition: all 0.3s ease;
     cursor: pointer;
     flex: 1;
-    min-width: 220px;
-    max-width: 240px;
+    min-width: 300px;
+    max-width: 350px;
 }
 
 .contact-item:hover {
